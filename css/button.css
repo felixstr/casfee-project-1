@@ -1,0 +1,34 @@
+.button {
+    background: var(--color-secondary);
+    color: var(--color-on-secondary);
+    font-size: 1.6rem;
+    padding: 1.2rem 2rem;
+    border-radius: var(--radius-round);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    min-width: 10rem;
+}
+
+.button--primary {
+    background: var(--color-primary-surface);
+    color: var(--color-on-primary);
+}
+
+.button--small {
+    padding: 0.8rem 1.6rem;
+    font-size: 1.4rem;
+}
+
+.button--tiny {
+    min-width: 2rem;
+    padding: 0.6rem 1.4rem;
+    font-size: 1.2rem;
+}
+
+.button:hover {
+    transform: scale(1.02);
+}
+
+.button:active {
+    transform: scale(0.98);
+}

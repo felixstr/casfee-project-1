@@ -1,0 +1,20 @@
+h1 {
+    font-size: 6.4rem;
+    margin-bottom: 1.6rem;
+}
+
+h2 {
+    font-size: 4.8rem;
+    margin-bottom: 1.6rem;
+}
+h2:not(:first-child) {
+    margin-top: 3.2rem;
+}
+
+p {
+    font-size: 1.8rem;
+}
+
+textarea {
+    font-family: system-ui, Arial, sans-serif;
+}

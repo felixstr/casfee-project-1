@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <title>CAS FEE: Project 1 - UI Library</title>
+        <meta charset="utf-8" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="js/app.js"></script>
+    </head>
+    <body class="darkmode">
+        <h1>UI Library</h1>
+
+        <h2>Text</h2>
+        <p>
+            Paragraph - default text Lorem ipsum dolor sit amet, consetetur
+            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+            et dolore magna aliquyam erat.
+        </p>
+        <p>
+            Paragraph - default text Lorem ipsum dolor sit amet, consetetur
+            sadipscing.
+        </p>
+
+        <h2>Button</h2>
+        <button class="button">Button</button>
+        <button class="button button--primary">Primary Button</button>
+        <button class="button button--small">Small Button</button>
+        <button class="button button--primary button--small">
+            Small Primary Button
+        </button>
+        <button class="button button--tiny">Small Button</button>
+
+        <h2>Select</h2>
+        <div class="select">
+            <label for="label">Sort by</label>
+            <select id="label">
+                <option>Name</option>
+                <option>Due date</option>
+                <option>Creation date</option>
+                <option>Importance</option>
+            </select>
+        </div>
+
+        <h2>Textfield</h2>
+        <div class="l-form">
+            <div class="textfield">
+                <input id="textfield" type="text" placeholder="hiden" />
+                <label for="textfield">Label</label>
+            </div>
+            <div class="textfield">
+                <input
+                    id="textfield"
+                    type="text"
+                    value="test"
+                    placeholder="hidden"
+                />
+                <label for="textfield">Label</label>
+            </div>
+            <div class="textfield">
+                <input id="date" type="date" placeholder="hidden" />
+                <label for="date">Date</label>
+            </div>
+        </div>
+
+        <h2>Bullet</h2>
+        <div style="display: flex">
+            <div class="bullet"></div>
+            <div class="bullet bullet--done"></div>
+            <div class="bullet"></div>
+        </div>
+
+        <h2>Todo Item</h2>
+        <div class="todo-item">
+            <div class="todo-item__bullet">
+                <div class="bullet"></div>
+            </div>
+            <div class="todo-item__content">
+                <div class="todo-item__description">
+                    <div class="todo-item__prio">!!!</div>
+                    <div class="todo-item__text">text</div>
+                </div>
+                <div class="todo-item__due-date">duedate</div>
+            </div>
+            <div class="todo-item__action">
+                <button class="button button--tiny">Edit</button>
+            </div>
+        </div>
+        <div class="todo-item">
+            <div class="todo-item__bullet">
+                <div class="bullet bullet--done"></div>
+            </div>
+            <div class="todo-item__content">
+                <div class="todo-item__description">
+                    <div class="todo-item__text">text</div>
+                </div>
+            </div>
+            <div class="todo-item__action">
+                <button class="button button--tiny">Edit</button>
+            </div>
+        </div>
+    </body>
+</html>

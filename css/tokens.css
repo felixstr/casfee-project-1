@@ -1,0 +1,66 @@
+:root {
+    /* colors light */
+    --color-light-surface: white;
+    --color-light-on-surface: #1a1a1a;
+    --color-light-on-surface-light: #424242;
+
+    --color-light-primary-surface: blue;
+    --color-light-primary-text: blue;
+    --color-light-on-primary: white;
+
+    --color-light-secondary: #eaeaea;
+    --color-light-on-secondary: black;
+
+    --color-light-border: #dbdbdb;
+
+    --color-light-danger: red;
+
+    /* colors dark */
+    --color-dark-surface: black;
+    --color-dark-on-surface: #f4f4f4;
+    --color-dark-on-surface-light: #d7d7d7;
+
+    --color-dark-primary-surface: #6a00db;
+    --color-dark-primary-text: #ae6af6;
+    --color-dark-on-primary: #ffffff;
+
+    --color-dark-secondary: #2d2d2d;
+    --color-dark-on-secondary: white;
+
+    --color-dark-border: #404040;
+
+    --color-dark-danger: red;
+
+    /* transition */
+    --transition-fast: all 0.1s ease;
+
+    /* radius */
+    --radius-small: 0.4rem;
+    --radius-round: 10rem;
+}
+
+body {
+    --color-surface: var(--color-light-surface);
+    --color-on-surface: var(--color-light-on-surface);
+    --color-on-surface-light: var(--color-light-on-surface-light);
+    --color-primary-surface: var(--color-light-primary-surface);
+    --color-primary-text: var(--color-light-primary-text);
+    --color-on-primary: var(--color-light-on-primary);
+    --color-secondary: var(--color-light-secondary);
+    --color-on-secondary: var(--color-light-on-secondary);
+    --color-border: var(--color-light-border);
+    --color-danger: var(--color-light-danger);
+}
+
+body.darkmode {
+    --color-surface: var(--color-dark-surface);
+    --color-on-surface: var(--color-dark-on-surface);
+    --color-on-surface-light: var(--color-dark-on-surface-light);
+    --color-primary-surface: var(--color-dark-primary-surface);
+    --color-primary-text: var(--color-dark-primary-text);
+    --color-on-primary: var(--color-dark-on-primary);
+    --color-secondary: var(--color-dark-secondary);
+    --color-on-secondary: var(--color-dark-on-secondary);
+    --color-border: var(--color-dark-border);
+    --color-danger: var(--color-dark-danger);
+}

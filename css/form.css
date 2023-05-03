@@ -1,0 +1,133 @@
+/* select */
+.select {
+    position: relative;
+    display: inline-block;
+    font-size: 1.4rem;
+    color: var(--color-on-surface);
+}
+
+.select label {
+    color: var(--color-on-surface-light);
+}
+
+.select select {
+    appearance: none;
+    background: var(--color-secondary);
+    color: var(--color-on-secondary);
+    border-radius: 25px;
+    padding: 0.8rem 1.6rem;
+    padding-right: 3.2rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-size: inherit;
+}
+
+.select::after {
+    content: '';
+    width: 0.6em;
+    height: 0.4em;
+    background: var(--color-on-secondary);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    position: absolute;
+    right: 1.6rem;
+    top: 50%;
+    transform: translateY(-40%);
+}
+
+.select select:hover {
+    transform: scale(1.02);
+}
+
+.select select:active {
+    transform: scale(0.98);
+}
+
+/* textfield (input & textarea) */
+.textfield {
+    --height: 4.8rem;
+    --label-size: 1.6rem;
+    position: relative;
+}
+.textfield > :first-child {
+    display: block;
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 2rem 0.6rem 0.6rem 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-small);
+    color: var(--color-on-surface);
+    background-color: var(--color-surface);
+}
+.textfield input {
+    height: var(--height);
+    display: flex;
+    align-items: end;
+}
+.textfield textarea {
+    height: 10rem;
+}
+.textfield > :first-child::placeholder {
+    opacity: 0;
+    visibility: hidden;
+}
+.textfield label {
+    position: absolute;
+    top: calc((var(--height) / 2) - (var(--label-size) / 2));
+    font-size: var(--label-size);
+    line-height: 1;
+    padding-left: 0.8rem;
+    transform-origin: left center;
+    color: var(--color-on-surface-light);
+    transition: var(--transition-fast);
+}
+.textfield > :first-child:focus ~ label,
+.textfield > :first-child:not(:placeholder-shown) ~ label {
+    transform: scale(0.7) translateY(-1.5rem) translateX(0.2rem);
+}
+.textfield > :first-child:not(:placeholder-shown):valid {
+    border-color: var(--color-on-surface-light);
+}
+.textfield > :first-child:focus ~ label {
+    color: var(--color-primary-text);
+}
+.textfield > :first-child:focus:valid {
+    border-color: var(--color-primary-surface);
+}
+
+.textfield > :first-child:not(:placeholder-shown):invalid {
+    border-color: red;
+}
+.textfield > :first-child:not(:placeholder-shown):invalid ~ label {
+    color: red;
+}
+
+/* input date styling */
+input::-webkit-datetime-edit {
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+input::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+    margin: 0;
+}
+input::-webkit-datetime-edit-day-field,
+input::-webkit-datetime-edit-month-field,
+input::-webkit-datetime-edit-year-field {
+    padding: 0;
+}
+
+input::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--color-light-secondary);
+    border-radius: var(--radius-small);
+    cursor: pointer;
+}
+
+/* deactivate focus */
+.textfield > *:focus {
+    outline: none;
+}

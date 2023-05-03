@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after,
+*::-webkit-datetime-edit {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html {
+    /**
+    * easier to use rem values: 10px = 1rem 
+    * https://www.aleksandrhovhannisyan.com/blog/62-5-percent-font-size-trick/ 
+    */
+    font-size: 62.5%;
+}
+
+body {
+    font-family: system-ui, Arial, sans-serif;
+    font-size: 1.6rem;
+    background: var(--color-surface);
+    color: var(--color-on-surface);
+}

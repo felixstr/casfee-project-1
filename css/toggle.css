@@ -1,0 +1,60 @@
+.toggle {
+    --toggle-height: 2.4rem;
+    --toggle-width: 4rem;
+    --toggle-padding: 0.2rem;
+    --toggle-button-size: calc(
+        var(--toggle-height) - (2 * var(--toggle-padding))
+    );
+}
+
+.toggle input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.toggle label {
+    position: relative;
+    display: inline-block;
+    background: var(--color-secondary);
+    color: var(--color-on-secondary);
+    font-size: 0.8rem;
+    height: var(--toggle-height);
+    width: var(--toggle-width);
+    border-radius: var(--radius-round);
+    cursor: pointer;
+}
+
+.toggle label::after {
+    content: '';
+    position: absolute;
+    aspect-ratio: 1;
+    height: var(--toggle-button-size);
+    background: var(--color-primary-surface);
+    border-radius: var(--radius-round);
+    top: var(--toggle-padding);
+    left: 0;
+    transform: translateX(var(--toggle-padding));
+    transition: var(--transition-medium);
+}
+
+.toggle label::before {
+    content: attr(data-unchecked);
+    color: var(--color-on-surface-light);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 1.4rem);
+}
+
+.toggle input:checked + label::after {
+    transform: translateX(
+        calc(
+            var(--toggle-width) - var(--toggle-button-size) -
+                var(--toggle-padding)
+        )
+    );
+}
+
+.toggle input:checked + label::before {
+    content: attr(data-checked);
+}

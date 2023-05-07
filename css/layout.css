@@ -6,6 +6,12 @@
     margin: 0 auto;
 }
 
+.l-mode-toggle {
+    position: absolute;
+    padding: 2rem;
+    right: 0;
+}
+
 .l-toolbar {
     border-bottom: 1px solid var(--color-border);
     display: flex;

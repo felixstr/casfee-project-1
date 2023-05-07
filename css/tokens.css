@@ -33,6 +33,8 @@
 
     /* transition */
     --transition-fast: all 0.1s ease;
+    --transition-medium: all 0.3s ease;
+    --transition-slow: all 1s ease;
 
     /* radius */
     --radius-small: 0.4rem;

@@ -8,25 +8,16 @@
     </head>
     <body>
         <div class="l-mode-toggle">
-            <div class="toggle">
+            <div class="toggle toggle--colormode">
                 <input id="toggle" type="checkbox" class="js-mode-toggle" />
-                <label
-                    for="toggle"
-                    data-checked="Dark"
-                    data-unchecked="Light"
-                ></label>
+                <label for="toggle"></label>
             </div>
         </div>
 
         <div class="l-wrapper">
             <h1>Todos</h1>
 
-            <button
-                class="button button--primary"
-                onclick="location.href = 'form.html'"
-            >
-                New
-            </button>
+            <button class="button button--primary js-button-new">New</button>
 
             <div class="l-toolbar">
                 <div class="select">
@@ -111,6 +102,73 @@
                 </div>
             </div>
         </div>
+
+        <dialog class="modal js-modal-form">
+            <div class="l-wrapper">
+                <h2>Edit Todo</h2>
+                <form class="js-form">
+                    <div class="l-form">
+                        <div class="textfield">
+                            <input
+                                id="title"
+                                type="text"
+                                name="title"
+                                value=""
+                                placeholder="hidden"
+                                required
+                            />
+                            <label for="title">Title</label>
+                        </div>
+
+                        <div class="textfield">
+                            <textarea
+                                id="description"
+                                name="description"
+                                value=""
+                                placeholder="hidden"
+                            ></textarea>
+                            <label for="description">Description</label>
+                        </div>
+
+                        <div class="l-form__row">
+                            <div class="textfield">
+                                <input
+                                    id="duedate"
+                                    type="date"
+                                    name="duedate"
+                                    value=""
+                                    placeholder="hidden"
+                                    min="2023-05-02"
+                                />
+                                <label for="duedate">Due date</label>
+                            </div>
+
+                            <div class="textfield">
+                                <input
+                                    id="prio"
+                                    type="number"
+                                    name="priority"
+                                    value=""
+                                    placeholder="hidden"
+                                    min="1"
+                                    max="5"
+                                />
+                                <label for="prio">Priority</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="l-button-row">
+                        <button type="button" class="button js-button-cancel">
+                            Cancel
+                        </button>
+                        <button type="submit" class="button button--primary">
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </dialog>
         <script src="js/app.js"></script>
     </body>
 </html>

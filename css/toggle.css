@@ -1,6 +1,6 @@
 .toggle {
-    --toggle-height: 2.4rem;
-    --toggle-width: 4rem;
+    --toggle-height: 1.6rem;
+    --toggle-width: 2.8rem;
     --toggle-padding: 0.2rem;
     --toggle-button-size: calc(
         var(--toggle-height) - (2 * var(--toggle-padding))
@@ -57,4 +57,28 @@
 
 .toggle input:checked + label::before {
     content: attr(data-checked);
+}
+
+.toggle--colormode {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.toggle--colormode::before,
+.toggle--colormode::after {
+    content: '';
+    background: green;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+}
+
+.toggle--colormode::before {
+    background: var(--color-light-surface);
+    border: 1px solid var(--color-light-on-surface-light);
+}
+
+.toggle--colormode::after {
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-dark-on-surface-light);
 }

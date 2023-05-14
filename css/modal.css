@@ -1,0 +1,67 @@
+.modal {
+    background: var(--color-surface);
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    max-width: initial;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    box-shadow: 0 -5px 10px -10px rgba(0, 0, 0, 0.5);
+    padding: 2rem 0;
+}
+
+.modal[open] {
+    animation: moveIn 0.3s forwards;
+}
+
+.modal.close[open] {
+    animation: moveOut 0.3s forwards;
+}
+
+.modal::backdrop {
+    background: rgba(129, 129, 129, 0.5);
+    animation: fadeIn 0.3s forwards;
+}
+.modal.close::backdrop {
+    animation: fadeOut 0.3s forwards;
+}
+
+@keyframes moveIn {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveOut {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

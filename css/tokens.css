@@ -39,6 +39,9 @@
     /* radius */
     --radius-small: 0.4rem;
     --radius-round: 10rem;
+
+    /* scale */
+    --hover-scale: scale(1.06);
 }
 
 body {

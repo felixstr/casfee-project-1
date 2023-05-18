@@ -2,6 +2,10 @@
 
 ## Todos
 
+### General
+
+-   [x] using "Vorlage V1.2"
+
 ### HTML
 
 -   [x] Base HTML (Button, Todolist, Formfields)

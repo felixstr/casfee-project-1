@@ -35,6 +35,12 @@
     color: var(--color-on-surface-light);
 }
 
+.todo-item__text {
+    font-size: 1.4rem;
+    color: var(--color-on-surface-light);
+    line-height: 1.3;
+}
+
 .todo-item__action {
     opacity: 0;
     transition: var(--transition-fast);

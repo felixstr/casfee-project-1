@@ -13,7 +13,7 @@
 -   [x] Use `dialog` element to show the form
 -   [ ] (optional) Using handlebars for the templates
 -   [ ] use button or input element for bullet
--   [ ] use toggle for show/hide completed todos
+-   [x] use toggle for show/hide completed todos
 -   [ ] add favicon
 
 ### CSS
@@ -30,3 +30,4 @@
 -   [x] save todos in local storage
 -   [x] save sortBy in local storage
 -   [x] organise according to MVC
+-   [ ] (optional) create service/storage class for localstorage settings (color mode, complete toggle)

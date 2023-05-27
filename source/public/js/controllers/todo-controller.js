@@ -4,12 +4,14 @@ import { todoService } from '../services/todo-service.js';
 const SELECTOR_LIST = '.js-list';
 const SELECTOR_SORT_SELECT = '.js-sort';
 const SELECTOR_BUTTON_NEW = '.js-button-new';
+const SELECTOR_TOGGLE_COMPLETED = '.js-toggle-completed';
 
 class TodoController {
     constructor() {
         this.listElement = document.querySelector(SELECTOR_LIST);
         this.sortSelectElement = document.querySelector(SELECTOR_SORT_SELECT);
         this.buttonNewlement = document.querySelector(SELECTOR_BUTTON_NEW);
+        this.toggleCompletedElement = document.querySelector(SELECTOR_TOGGLE_COMPLETED);
 
         this.dialogController = new DialogController(this);
     }
@@ -17,8 +19,9 @@ class TodoController {
     initialize() {
         this.initEventHandlers();
         todoService.loadData();
-        this.renderTodoList();
         this.setSortByValue();
+        this.setCompletedState();
+        this.renderTodoList();
     }
 
     initEventHandlers() {
@@ -45,6 +48,11 @@ class TodoController {
             this.renderTodoList();
             localStorage.setItem('sort-by', event.target.value);
         });
+
+        this.toggleCompletedElement.addEventListener('change', (event) => {
+            this.listElement.classList.toggle('todo-list--show-completed', event.target.checked);
+            localStorage.setItem('completed', event.target.checked);
+        });
     }
 
     renderTodoList() {
@@ -63,7 +71,9 @@ class TodoController {
             ? new Date(todo.duedate).toLocaleDateString()
             : undefined;
 
-        return `<div class="todo-item js-todo-item" data-id="${todo.id}">
+        return `<div class="todo-item js-todo-item" data-id="${todo.id}" data-completed="${
+            todo.done
+        }">
                     <div class="todo-item__bullet ">
                         <div class="bullet ${todo.done ? 'bullet--done' : ''} js-done"></div>
                     </div>
@@ -106,8 +116,18 @@ class TodoController {
     }
 
     setSortByValue() {
-        const storageValue = localStorage.getItem('sort-by');
-        this.sortSelectElement.value = storageValue || todoService.sortBy;
+        const sortBy = localStorage.getItem('sort-by') || todoService.sortBy;
+        todoService.sortBy = sortBy;
+        this.sortSelectElement.value = sortBy;
+        todoService.sort();
+    }
+
+    setCompletedState() {
+        this.toggleCompletedElement.checked = localStorage.getItem('completed') === 'true' || false;
+        this.listElement.classList.toggle(
+            'todo-list--show-completed',
+            this.toggleCompletedElement.checked
+        );
     }
 }
 

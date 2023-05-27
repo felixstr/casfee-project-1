@@ -1,10 +1,17 @@
 .toggle {
+    --toggle-height: 3.2rem;
+    --toggle-width: 5.6rem;
+    --toggle-padding: 0.2rem;
+    --toggle-button-size: calc(var(--toggle-height) - (2 * var(--toggle-padding)));
+
+    display: flex;
+}
+
+.toggle--tiny {
     --toggle-height: 1.6rem;
     --toggle-width: 2.8rem;
     --toggle-padding: 0.2rem;
-    --toggle-button-size: calc(
-        var(--toggle-height) - (2 * var(--toggle-padding))
-    );
+    --toggle-button-size: calc(var(--toggle-height) - (2 * var(--toggle-padding)));
 }
 
 .toggle input {
@@ -36,7 +43,7 @@
     transform: translateX(var(--toggle-padding));
     transition: var(--transition-medium);
 }
-
+/*
 .toggle label::before {
     content: attr(data-unchecked);
     color: var(--color-on-surface-light);
@@ -45,20 +52,17 @@
     left: 50%;
     transform: translate(-50%, 1.4rem);
 }
-
+*/
 .toggle input:checked + label::after {
     transform: translateX(
-        calc(
-            var(--toggle-width) - var(--toggle-button-size) -
-                var(--toggle-padding)
-        )
+        calc(var(--toggle-width) - var(--toggle-button-size) - var(--toggle-padding))
     );
 }
-
+/*
 .toggle input:checked + label::before {
     content: attr(data-checked);
 }
-
+*/
 .toggle--colormode {
     display: flex;
     align-items: center;
@@ -81,4 +85,14 @@
 .toggle--colormode::after {
     background: var(--color-dark-surface);
     border: 1px solid var(--color-dark-on-surface-light);
+}
+
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.toggle-wrapper > label {
+    font-size: 1.4rem;
 }

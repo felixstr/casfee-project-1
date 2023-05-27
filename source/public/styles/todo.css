@@ -49,3 +49,10 @@
 .todo-item:hover .todo-item__action {
     opacity: 1;
 }
+
+.todo-list .todo-item[data-completed='true'] {
+    display: none;
+}
+.todo-list--show-completed .todo-item[data-completed='true'] {
+    display: flex;
+}

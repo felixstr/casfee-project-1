@@ -1,9 +1,11 @@
 /* select */
 .select {
     position: relative;
-    display: inline-block;
     font-size: 1.4rem;
     color: var(--color-on-surface);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
 }
 
 .select label {

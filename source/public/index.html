@@ -10,9 +10,9 @@
     </head>
     <body>
         <div class="l-mode-toggle">
-            <div class="toggle toggle--colormode">
-                <input id="toggle" type="checkbox" class="js-mode-toggle" />
-                <label for="toggle"></label>
+            <div class="toggle toggle--tiny toggle--colormode">
+                <input id="toggle-colormode" type="checkbox" class="js-mode-toggle" />
+                <label for="toggle-colormode"></label>
             </div>
         </div>
 
@@ -27,15 +27,21 @@
                     <select id="sort" class="js-sort">
                         <option value="title">Title</option>
                         <option value="duedate">Due date</option>
-                        <option value="creationdate">Creation date</option>
+                        <option value="createdate">Creation date</option>
                         <option value="priority">Priority</option>
                     </select>
                 </div>
 
-                <button class="button button--small">Show completed</button>
+                <div class="toggle-wrapper">
+                    <label class="toggle-label" for="toggle-completed">Show completed</label>
+                    <div class="toggle">
+                        <input id="toggle-completed" type="checkbox" class="js-toggle-completed" />
+                        <label for="toggle-completed"></label>
+                    </div>
+                </div>
             </div>
 
-            <div class="l-list js-list">
+            <div class="todo-list js-list">
                 <div class="todo-item">
                     <div class="todo-item__bullet">
                         <div class="bullet"></div>

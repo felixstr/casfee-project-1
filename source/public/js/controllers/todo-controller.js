@@ -43,6 +43,7 @@ class TodoController {
             todoService.sortBy = event.target.value;
             todoService.sort();
             this.renderTodoList();
+            localStorage.setItem('sort-by', event.target.value);
         });
     }
 
@@ -57,10 +58,11 @@ class TodoController {
         for (let i = 0; i < todo.priority; i++) {
             prio += '!';
         }
-        let dateFormatted = '';
-        if (todo.duedate) {
-            dateFormatted = new Intl.DateTimeFormat('ch-DE').format(new Date(todo.duedate));
-        }
+
+        const dateFormatted = todo.duedate
+            ? new Date(todo.duedate).toLocaleDateString()
+            : undefined;
+
         return `<div class="todo-item js-todo-item" data-id="${todo.id}">
                     <div class="todo-item__bullet ">
                         <div class="bullet ${todo.done ? 'bullet--done' : ''} js-done"></div>
@@ -70,8 +72,16 @@ class TodoController {
                             <div class="todo-item__prio">${prio}</div>
                             <div class="todo-item__title">${todo.title}</div>
                         </div>
-                        <div class="todo-item__text">${todo.description}</div>
-                        <div class="todo-item__due-date">${dateFormatted}</div>
+                        ${
+                            todo.description
+                                ? `<div class="todo-item__text">${todo.description}</div>`
+                                : ''
+                        }
+                        ${
+                            dateFormatted
+                                ? `<div class="todo-item__due-date">${dateFormatted}</div>`
+                                : ''
+                        }   
                     </div>
                     <div class="todo-item__action">
                         <button class="button button--tiny js-edit">Edit</button>
@@ -96,7 +106,8 @@ class TodoController {
     }
 
     setSortByValue() {
-        this.sortSelectElement.value = todoService.sortBy;
+        const storageValue = localStorage.getItem('sort-by');
+        this.sortSelectElement.value = storageValue || todoService.sortBy;
     }
 }
 

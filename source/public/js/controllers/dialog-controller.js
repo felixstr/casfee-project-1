@@ -15,14 +15,10 @@ export default class DialogController {
         this.priorityFieldElement = this.formElement.querySelector('[name="priority"]');
         this.idFieldElement = this.formElement.querySelector('[name="id"]');
 
-        console.log('todoController', this.todoController);
-
         this.initEventHandlers();
     }
 
     initEventHandlers() {
-        console.log('init dialog controller');
-
         this.buttonCancelElement.addEventListener('click', () => {
             this.closeDialog();
         });
@@ -53,7 +49,7 @@ export default class DialogController {
     }
 
     openDialog(todo) {
-        console.log('openDialog', todo);
+        // console.log('openDialog', todo);
         if (todo && todo.id >= 0) {
             this.idFieldElement.value = todo.id;
             this.titleFieldElement.value = todo.title;

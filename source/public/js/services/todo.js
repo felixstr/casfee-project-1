@@ -6,6 +6,9 @@ export class Todo {
         this.duedate = duedate; // TODO: which type? date or string?
         this.priority = priority;
         this.done = done;
+        this.createdate = new Date().toJSON();
+
+        console.log('Todo', this);
     }
     /*
     toJSON() {
@@ -16,6 +19,7 @@ export class Todo {
             duedate: this.duedate,
             priority: this.priority,
             done: this.done,
+            createdate: this.createdate,
         };
     }
     */

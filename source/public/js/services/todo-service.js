@@ -9,7 +9,7 @@ export class TodoService {
     loadData() {
         this.todos = JSON.parse(localStorage.getItem('todos')) || [];
         this.sort();
-        console.log('loadData', this.todos);
+        // console.log('loadData', this.todos);
     }
 
     save() {
@@ -17,7 +17,7 @@ export class TodoService {
     }
 
     addTodo({ title, description, duedate, priority }, callback) {
-        console.log('TodoService.addTodo', title);
+        // console.log('TodoService.addTodo', title);
         const id = this.createNewId();
         const todo = new Todo(id, title, description, duedate, priority);
 
@@ -32,11 +32,11 @@ export class TodoService {
     }
 
     updateTodo({ id, title, description, duedate, priority, done }, callback) {
-        console.log('updateTodo id', id);
-        console.log('updateTodo done', done);
+        // console.log('updateTodo id', id);
+
         const todo = this.getById(id);
 
-        console.log('updateTodo', todo);
+        // console.log('updateTodo', todo);
 
         todo.title = title;
         todo.description = description;
@@ -65,6 +65,8 @@ export class TodoService {
     }
 
     sort() {
+        // console.log('sortBY', this.sortBy);
+        // console.log('this.todos', this.todos);
         this.todos.sort((todo1, todo2) => {
             if (this.sortBy === 'priority') {
                 return Number(todo2.priority) - Number(todo1.priority);
@@ -77,15 +79,21 @@ export class TodoService {
                 }
                 return 0;
             } else if (this.sortBy === 'duedate') {
-                const todo1Date = new Date(todo1.duedate);
-                const todo2Date = new Date(todo2.duedate);
-                if (isNaN(todo1Date)) return 1;
-                if (isNaN(todo2Date)) return -1;
-                return todo1Date - todo2Date;
+                // console.log('createdate', dateSorter(todo1.duedate, todo2.duedate));
+                return dateSorter(todo1.duedate, todo2.duedate);
+            } else if (this.sortBy === 'createdate') {
+                // console.log('createdate', dateSorter(todo1.createdate, todo2.createdate));
+                return dateSorter(todo1.createdate, todo2.createdate);
             }
         });
 
-        // this.sortSelectElement.value = this.sortBy;
+        function dateSorter(date1, date2) {
+            date1 = new Date(date1);
+            date2 = new Date(date2);
+            if (isNaN(date1)) return 1;
+            if (isNaN(date2)) return -1;
+            return date2 - date1;
+        }
     }
 
     createNewId() {

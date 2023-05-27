@@ -28,5 +28,5 @@
 -   [x] Save colormode in local storage
 -   [x] create controller for the todos
 -   [x] save todos in local storage
--   [ ] save sortBy in local storage
+-   [x] save sortBy in local storage
 -   [x] organise according to MVC

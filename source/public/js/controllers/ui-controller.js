@@ -1,16 +1,10 @@
-import todoController from './todoController.js';
-import { init as initModal } from './modal.js';
-
-const uiController = {
-    init: function () {
+class UiController {
+    constructor() {
         this.changeFormTypeWhileFocus();
         this.initModeToggle();
+    }
 
-        todoController.init();
-        initModal();
-    },
-
-    changeFormTypeWhileFocus: function () {
+    changeFormTypeWhileFocus() {
         const dateElements = document.querySelectorAll(
             '.textfield input[type=date], .textfield input[type=number]'
         );
@@ -19,13 +13,11 @@ const uiController = {
             item.type = 'text';
             item.onfocus = () => (item.type = originalType);
             item.onblur = () =>
-                item.value === ''
-                    ? (item.type = 'text')
-                    : (item.type = originalType);
+                item.value === '' ? (item.type = 'text') : (item.type = originalType);
         });
-    },
+    }
 
-    initModeToggle: function () {
+    initModeToggle() {
         const modeToggleElement = document.querySelector('.js-mode-toggle');
         const bodyElement = document.querySelector('body');
         let mode = localStorage.getItem('mode');
@@ -44,7 +36,7 @@ const uiController = {
                 bodyElement.classList.add(mode);
             };
         }
-    },
-};
+    }
+}
 
-export default uiController;
+new UiController();

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
     <head>
         <title>CAS FEE: Project 1 - Todos</title>
         <meta charset="utf-8" />
         <link href="styles/styles.css" rel="stylesheet" />
-        <script type="module" src="scripts/app.js"></script>
+
+        <script src="js/controllers/ui-controller.js" defer></script>
+        <script src="js/controllers/todo-controller.js" type="module" defer></script>
     </head>
     <body>
         <div class="l-mode-toggle">
@@ -41,10 +43,9 @@
                     <div class="todo-item__content">
                         <div class="todo-item__description">
                             <div class="todo-item__title">
-                                default text Lorem ipsum dolor sit amet,
-                                consetetur sadipscing elitr, sed diam nonumy
-                                eirmod tempor invidunt ut labore et dolore magna
-                                aliquyam erat.
+                                default text Lorem ipsum dolor sit amet, consetetur sadipscing
+                                elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                                magna aliquyam erat.
                             </div>
                         </div>
                         <div class="todo-item__due-date">duedate</div>
@@ -63,9 +64,8 @@
                             <div class="todo-item__title">title</div>
                         </div>
                         <div class="todo-item__text">
-                            Paragraph - default text Lorem ipsum dolor sit amet,
-                            consetetur sadipscing elitr, sed diam nonumy eirmod
-                            tempor invidunt ut.
+                            Paragraph - default text Lorem ipsum dolor sit amet, consetetur
+                            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.
                         </div>
                         <div class="todo-item__due-date">duedate</div>
                     </div>
@@ -160,12 +160,8 @@
                     </div>
 
                     <div class="l-button-row">
-                        <button type="button" class="button js-button-cancel">
-                            Cancel
-                        </button>
-                        <button type="submit" class="button button--primary">
-                            Save
-                        </button>
+                        <button type="button" class="button js-button-cancel">Cancel</button>
+                        <button type="submit" class="button button--primary">Save</button>
                     </div>
                 </form>
             </div>

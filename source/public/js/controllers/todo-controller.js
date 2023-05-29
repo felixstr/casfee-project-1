@@ -58,7 +58,7 @@ class TodoController {
     renderTodoList() {
         this.listElement.innerHTML =
             todoService.todos.map((todo) => this.renderItemTemplate(todo)).join('') ||
-            `<div class="empty-list">Noch keine Todos vorhanden</div>`;
+            `<div class="todo-list__empty">Noch keine Todos vorhanden</div>`;
     }
 
     renderItemTemplate(todo) {
@@ -75,7 +75,7 @@ class TodoController {
             todo.done
         }">
                     <div class="todo-item__bullet ">
-                        <div class="bullet ${todo.done ? 'bullet--done' : ''} js-done"></div>
+                        <button class="bullet ${todo.done ? 'bullet--done' : ''} js-done"></button>
                     </div>
                     <div class="todo-item__content">
                         <div class="todo-item__description">

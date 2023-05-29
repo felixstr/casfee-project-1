@@ -1,7 +1,7 @@
 .toggle {
     --toggle-height: 3.2rem;
     --toggle-width: 5.6rem;
-    --toggle-padding: 0.2rem;
+    --toggle-padding: 0.4rem;
     --toggle-button-size: calc(var(--toggle-height) - (2 * var(--toggle-padding)));
 
     display: flex;
@@ -29,6 +29,7 @@
     width: var(--toggle-width);
     border-radius: var(--radius-round);
     cursor: pointer;
+    transition: var(--transition-medium);
 }
 
 .toggle label::after {
@@ -71,7 +72,6 @@
 .toggle--colormode::before,
 .toggle--colormode::after {
     content: '';
-    background: green;
     width: 0.8rem;
     height: 0.8rem;
     border-radius: 50%;
@@ -85,6 +85,14 @@
 .toggle--colormode::after {
     background: var(--color-dark-surface);
     border: 1px solid var(--color-dark-on-surface-light);
+}
+
+.toggle--checkbox input:checked + label {
+    background: var(--color-success);
+}
+
+.toggle--checkbox label::after {
+    background: var(--color-white);
 }
 
 .toggle-wrapper {

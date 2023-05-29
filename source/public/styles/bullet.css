@@ -8,6 +8,21 @@
     aspect-ratio: 1;
     transition: var(--transition-fast);
     cursor: pointer;
+    background: none;
+}
+
+.bullet::after {
+    content: '';
+    width: calc(100% - 6px);
+    aspect-ratio: 1;
+    background: var(--color-primary-surface);
+    opacity: 0;
+    border-radius: 50%;
+}
+
+.bullet:hover {
+    transform: scale(1.02);
+    border-color: var(--color-primary-surface);
 }
 
 .bullet--done {
@@ -15,15 +30,5 @@
 }
 
 .bullet--done::after {
-    content: '';
-    width: calc(100% - 6px);
-    aspect-ratio: 1;
-    background: var(--color-primary-surface);
-    display: block;
-    border-radius: 50%;
-}
-
-.bullet:hover {
-    transform: scale(1.02);
-    border-color: var(--color-primary-surface);
+    opacity: 1;
 }

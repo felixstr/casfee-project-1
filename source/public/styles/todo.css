@@ -53,6 +53,17 @@
 .todo-list .todo-item[data-completed='true'] {
     display: none;
 }
+
 .todo-list--show-completed .todo-item[data-completed='true'] {
     display: flex;
+}
+
+.todo-list__empty {
+    background: var(--color-secondary-light);
+    color: var(--color-on-secondary);
+    margin: 4rem;
+    padding: 1.6rem;
+    border-radius: var(--radius-small);
+    text-align: center;
+    font-size: 1.4rem;
 }

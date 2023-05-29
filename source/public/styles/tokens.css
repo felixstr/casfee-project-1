@@ -9,11 +9,13 @@
     --color-light-on-primary: white;
 
     --color-light-secondary: #eaeaea;
+    --color-light-secondary-light: #f8f8f8;
     --color-light-on-secondary: black;
 
     --color-light-border: #dbdbdb;
 
     --color-light-danger: red;
+    --color-light-success: #16bd16;
 
     /* colors dark */
     --color-dark-surface: black;
@@ -25,11 +27,16 @@
     --color-dark-on-primary: #ffffff;
 
     --color-dark-secondary: #2d2d2d;
+    --color-dark-secondary-light: #151515;
     --color-dark-on-secondary: white;
 
     --color-dark-border: #404040;
 
     --color-dark-danger: red;
+    --color-dark-success: #098e09;
+
+    /* colors always */
+    --color-white: white;
 
     /* transition */
     --transition-fast: all 0.1s ease;
@@ -52,9 +59,11 @@ body {
     --color-primary-text: var(--color-light-primary-text);
     --color-on-primary: var(--color-light-on-primary);
     --color-secondary: var(--color-light-secondary);
+    --color-secondary-light: var(--color-light-secondary-light);
     --color-on-secondary: var(--color-light-on-secondary);
     --color-border: var(--color-light-border);
     --color-danger: var(--color-light-danger);
+    --color-success: var(--color-light-success);
 }
 
 body.darkmode {
@@ -65,7 +74,9 @@ body.darkmode {
     --color-primary-text: var(--color-dark-primary-text);
     --color-on-primary: var(--color-dark-on-primary);
     --color-secondary: var(--color-dark-secondary);
+    --color-secondary-light: var(--color-dark-secondary-light);
     --color-on-secondary: var(--color-dark-on-secondary);
     --color-border: var(--color-dark-border);
     --color-danger: var(--color-dark-danger);
+    --color-success: var(--color-dark-success);
 }

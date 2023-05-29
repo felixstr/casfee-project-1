@@ -28,19 +28,19 @@ export default class DialogController {
 
             const formData = new FormData(e.target);
             const formDataObj = Object.fromEntries(formData.entries());
-            console.log('formDataObj', formDataObj);
+            // console.log('formDataObj', formDataObj);
 
             if (formDataObj.id) {
-                console.log('id', formDataObj.id);
+                // console.log('id', formDataObj.id);
 
-                todoService.updateTodo(formDataObj, (updatedTodo) => {
-                    console.log('todo updated and list updated', updatedTodo);
+                todoService.updateTodo(formDataObj, () => {
+                    // console.log('todo updated and list updated', updatedTodo);
                     this.todoController.renderTodoList();
                     this.closeDialog();
                 });
             } else {
-                todoService.addTodo(formDataObj, (addedTodo) => {
-                    console.log('todo added and list updated', addedTodo);
+                todoService.addTodo(formDataObj, () => {
+                    // console.log('todo added and list updated', addedTodo);
                     this.todoController.renderTodoList();
                     this.closeDialog();
                 });

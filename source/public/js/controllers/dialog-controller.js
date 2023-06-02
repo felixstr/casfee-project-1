@@ -1,10 +1,6 @@
-import { todoService } from '../services/todo-service.js';
-
 // TODO: use constants for SELECTORS
 export default class DialogController {
-    constructor(todoController) {
-        this.todoController = todoController;
-
+    constructor() {
         this.modalFormElement = document.querySelector('.js-modal-form');
         this.buttonCancelElement = document.querySelector('.js-button-cancel');
         this.formElement = document.querySelector('.js-form');
@@ -15,36 +11,21 @@ export default class DialogController {
         this.priorityFieldElement = this.formElement.querySelector('[name="priority"]');
         this.idFieldElement = this.formElement.querySelector('[name="id"]');
 
+        this.onSubmit = () => console.error('onSubmit() function is not implemented');
+
         this.initEventHandlers();
     }
 
     initEventHandlers() {
-        this.buttonCancelElement.addEventListener('click', () => {
-            this.closeDialog();
-        });
+        this.buttonCancelElement.addEventListener('click', () => this.closeDialog());
 
-        this.formElement.addEventListener('submit', (e) => {
-            e.preventDefault();
+        this.formElement.addEventListener('submit', (event) => {
+            event.preventDefault();
 
-            const formData = new FormData(e.target);
+            const formData = new FormData(event.target);
             const formDataObj = Object.fromEntries(formData.entries());
-            // console.log('formDataObj', formDataObj);
 
-            if (formDataObj.id) {
-                // console.log('id', formDataObj.id);
-
-                todoService.updateTodo(formDataObj, () => {
-                    // console.log('todo updated and list updated', updatedTodo);
-                    this.todoController.renderTodoList();
-                    this.closeDialog();
-                });
-            } else {
-                todoService.addTodo(formDataObj, () => {
-                    // console.log('todo added and list updated', addedTodo);
-                    this.todoController.renderTodoList();
-                    this.closeDialog();
-                });
-            }
+            this.onSubmit(formDataObj);
         });
     }
 

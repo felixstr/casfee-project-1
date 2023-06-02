@@ -5,6 +5,7 @@ const SELECTOR_LIST = '.js-list';
 const SELECTOR_SORT_SELECT = '.js-sort';
 const SELECTOR_BUTTON_NEW = '.js-button-new';
 const SELECTOR_TOGGLE_COMPLETED = '.js-toggle-completed';
+const MODIFIER_LIST_COMPLETED = 'todo-list--show-completed';
 
 class TodoController {
     constructor() {
@@ -13,7 +14,7 @@ class TodoController {
         this.buttonNewlement = document.querySelector(SELECTOR_BUTTON_NEW);
         this.toggleCompletedElement = document.querySelector(SELECTOR_TOGGLE_COMPLETED);
 
-        this.dialogController = new DialogController(this);
+        this.dialogController = new DialogController();
     }
 
     initialize() {
@@ -25,9 +26,7 @@ class TodoController {
     }
 
     initEventHandlers() {
-        this.buttonNewlement.addEventListener('click', () => {
-            this.dialogController.openDialog();
-        });
+        this.buttonNewlement.addEventListener('click', () => this.dialogController.openDialog());
 
         this.listElement.addEventListener('click', (event) => {
             const id = Number(event.target.closest('[data-id]').dataset.id);
@@ -50,9 +49,25 @@ class TodoController {
         });
 
         this.toggleCompletedElement.addEventListener('change', (event) => {
-            this.listElement.classList.toggle('todo-list--show-completed', event.target.checked);
+            this.listElement.classList.toggle(MODIFIER_LIST_COMPLETED, event.target.checked);
             localStorage.setItem('completed', event.target.checked);
         });
+
+        this.dialogController.onSubmit = (data) => {
+            if (data.id) {
+                todoService.updateTodo(data, () => {
+                    // console.log('todo updated and list updated', data);
+                    this.renderTodoList();
+                    this.dialogController.closeDialog();
+                });
+            } else {
+                todoService.addTodo(data, () => {
+                    // console.log('todo added and list updated', data);
+                    this.renderTodoList();
+                    this.dialogController.closeDialog();
+                });
+            }
+        };
     }
 
     renderTodoList() {
@@ -110,7 +125,7 @@ class TodoController {
     toggleDone(todo) {
         todo.done = !todo.done;
         todoService.updateTodo(todo, () => {
-            console.log('todo erledigt');
+            // console.log('todo erledigt');
         });
         this.renderTodoList();
     }
@@ -125,7 +140,7 @@ class TodoController {
     setCompletedState() {
         this.toggleCompletedElement.checked = localStorage.getItem('completed') === 'true' || false;
         this.listElement.classList.toggle(
-            'todo-list--show-completed',
+            MODIFIER_LIST_COMPLETED,
             this.toggleCompletedElement.checked
         );
     }

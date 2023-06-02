@@ -8,7 +8,7 @@ export class Todo {
         this.done = done;
         this.createdate = new Date().toJSON();
 
-        console.log('Todo', this);
+        // console.log('Todo', this);
     }
     /*
     toJSON() {

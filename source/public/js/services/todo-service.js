@@ -30,6 +30,7 @@ export class TodoService {
 
         this.todos.push(todo);
 
+        this.sort();
         this.save();
 
         // simulate loading

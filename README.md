@@ -33,4 +33,5 @@
 -   [x] save sortBy in local storage
 -   [x] organise according to MVC
 -   [ ] (optional) create service/storage class for localstorage settings (color mode, complete toggle)
--   [ ] duedate: show day count if less than 7 days
+-   [x] duedate: show day count if less than 7 days
+-   [ ] duedate: warn color if in the past

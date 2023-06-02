@@ -138,9 +138,27 @@ class TodoController {
             prio += '!';
         }
 
-        const dateFormatted = todo.duedate
-            ? new Date(todo.duedate).toLocaleDateString()
-            : undefined;
+        let duedateOutput;
+        let dateWarning = false;
+
+        if (todo.duedate) {
+            const date = new Date(todo.duedate);
+            const differenceInMs = date.getTime() - new Date();
+            const differenceInDays = Math.ceil(differenceInMs / (1000 * 3600 * 24));
+
+            if (differenceInDays > 7) {
+                duedateOutput = date.toLocaleDateString();
+            } else if (differenceInDays === 0) {
+                duedateOutput = 'Today';
+                dateWarning = true;
+            } else if (differenceInDays < 0) {
+                duedateOutput = date.toLocaleDateString();
+                dateWarning = true;
+            } else if (differenceInDays > 0) {
+                duedateOutput = `In ${differenceInDays} days`;
+                dateWarning = true;
+            }
+        }
 
         return `<div class="todo-item js-todo-item" data-id="${todo.id}" data-completed="${
             todo.done
@@ -159,8 +177,8 @@ class TodoController {
                                 : ''
                         }
                         ${
-                            dateFormatted
-                                ? `<div class="todo-item__due-date">${dateFormatted}</div>`
+                            duedateOutput
+                                ? `<div class="todo-item__due-date">${duedateOutput}</div>`
                                 : ''
                         }   
                     </div>

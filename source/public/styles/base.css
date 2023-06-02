@@ -22,3 +22,8 @@ body {
     background: var(--color-surface);
     color: var(--color-on-surface);
 }
+
+*:focus-visible {
+    outline: 0.4rem solid var(--color-primary-surface);
+    outline-offset: 0.4rem;
+}

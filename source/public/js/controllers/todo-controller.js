@@ -8,6 +8,7 @@ const SELECTOR_BUTTON_NEW = '.js-button-new';
 const SELECTOR_TOGGLE_COMPLETED = '.js-toggle-completed';
 const MODIFIER_LIST_COMPLETED = 'todo-list--show-completed';
 const MODIFIER_BUTTON_CURRENT = 'button--current';
+const MODIFIER_DUEDATE_WARNING = 'todo-item__due-date--warning';
 
 class TodoController {
     constructor() {
@@ -133,30 +134,36 @@ class TodoController {
     }
 
     renderItemTemplate(todo) {
-        let prio = '';
-        for (let i = 0; i < todo.priority; i++) {
-            prio += '!';
-        }
+        const prio = new Array(Number(todo.priority) + 1).join('!');
 
         let duedateOutput;
-        let dateWarning = false;
+        let duedateModifier;
 
         if (todo.duedate) {
             const date = new Date(todo.duedate);
             const differenceInMs = date.getTime() - new Date();
             const differenceInDays = Math.ceil(differenceInMs / (1000 * 3600 * 24));
 
-            if (differenceInDays > 7) {
-                duedateOutput = date.toLocaleDateString();
+            if (differenceInDays < 0) {
+                // past
+                duedateOutput = `${Math.abs(differenceInDays)} day${
+                    differenceInDays < -1 ? 's' : ''
+                } ago`;
+                duedateModifier = MODIFIER_DUEDATE_WARNING;
             } else if (differenceInDays === 0) {
+                // today
                 duedateOutput = 'Today';
-                dateWarning = true;
-            } else if (differenceInDays < 0) {
+                duedateModifier = MODIFIER_DUEDATE_WARNING;
+            } else if (differenceInDays > 0 && differenceInDays < 8) {
+                // within 7 days
+                duedateOutput = `In ${differenceInDays} day${differenceInDays > 1 ? 's' : ''}`;
+            } else {
+                // more than 7 days
                 duedateOutput = date.toLocaleDateString();
-                dateWarning = true;
-            } else if (differenceInDays > 0) {
-                duedateOutput = `In ${differenceInDays} days`;
-                dateWarning = true;
+            }
+
+            if (todo.done) {
+                duedateModifier = undefined;
             }
         }
 
@@ -178,7 +185,7 @@ class TodoController {
                         }
                         ${
                             duedateOutput
-                                ? `<div class="todo-item__due-date">${duedateOutput}</div>`
+                                ? `<div class="todo-item__due-date ${duedateModifier}">${duedateOutput}</div>`
                                 : ''
                         }   
                     </div>

@@ -5,7 +5,7 @@
 ### General
 
 -   [x] using "Vorlage V1.2"
--   [ ] add create date
+-   [x] add create date
 
 ### HTML
 
@@ -14,8 +14,8 @@
 -   [ ] (optional) Using handlebars for the templates
 -   [x] use button or input element for bullet
 -   [x] use toggle for show/hide completed todos
--   [ ] add favicon
--   [ ] accessibility: keyboard navigation
+-   [x] add favicon
+-   [x] accessibility: keyboard navigation
 -   [x] add sort buttons
 
 ### CSS
@@ -34,4 +34,4 @@
 -   [x] organise according to MVC
 -   [ ] (optional) create service/storage class for localstorage settings (color mode, complete toggle)
 -   [x] duedate: show day count if less than 7 days
--   [ ] duedate: warn color if in the past
+-   [x] duedate: warn color if in the past

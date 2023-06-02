@@ -3,8 +3,9 @@
     position: relative;
     font-size: 1.4rem;
     color: var(--color-on-surface);
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    align-self: flex-start;
     gap: 0.8rem;
 }
 

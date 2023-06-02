@@ -1,6 +1,6 @@
 .toggle {
-    --toggle-height: 3.2rem;
-    --toggle-width: 5.6rem;
+    --toggle-height: 2.6rem;
+    --toggle-width: 4.4rem;
     --toggle-padding: 0.4rem;
     --toggle-button-size: calc(var(--toggle-height) - (2 * var(--toggle-padding)));
 
@@ -8,8 +8,8 @@
 }
 
 .toggle--tiny {
-    --toggle-height: 1.6rem;
-    --toggle-width: 2.8rem;
+    --toggle-height: 2rem;
+    --toggle-width: 3.6rem;
     --toggle-padding: 0.2rem;
     --toggle-button-size: calc(var(--toggle-height) - (2 * var(--toggle-padding)));
 }
@@ -44,26 +44,11 @@
     transform: translateX(var(--toggle-padding));
     transition: var(--transition-medium);
 }
-/*
-.toggle label::before {
-    content: attr(data-unchecked);
-    color: var(--color-on-surface-light);
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 1.4rem);
-}
-*/
 .toggle input:checked + label::after {
     transform: translateX(
         calc(var(--toggle-width) - var(--toggle-button-size) - var(--toggle-padding))
     );
 }
-/*
-.toggle input:checked + label::before {
-    content: attr(data-checked);
-}
-*/
 .toggle--colormode {
     display: flex;
     align-items: center;

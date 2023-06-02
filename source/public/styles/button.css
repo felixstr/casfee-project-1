@@ -25,6 +25,46 @@
     font-size: 1.2rem;
 }
 
+.button--sort {
+    position: relative;
+    padding-right: 2.4rem;
+}
+
+.button--sort::after,
+.button--sort::before {
+    content: '';
+    width: 0.5em;
+    height: 0.3em;
+    background: var(--color-on-secondary);
+    opacity: 0.2;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    position: absolute;
+    right: 0.8em;
+    top: 50%;
+
+    transform-origin: center center;
+}
+
+.button--sort::before {
+    transform: translateY(20%);
+}
+
+.button--sort::after {
+    transform: translateY(-120%) rotate(180deg);
+}
+
+.button--current {
+    box-shadow: inset 0 0 0 0.1rem var(--color-on-secondary);
+}
+
+.button--current[data-sort-direction='asc']::after {
+    opacity: 1;
+}
+
+.button--current[data-sort-direction='desc']::before {
+    opacity: 1;
+}
+
 .button:hover {
     transform: var(--hover-scale);
 }

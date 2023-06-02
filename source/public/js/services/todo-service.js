@@ -4,6 +4,13 @@ export class TodoService {
     constructor() {
         this.todos = [];
         this.sortBy = 'title';
+        this.sortDirection = 'asc';
+
+        this.getSortByValue();
+    }
+
+    getSortByValue() {
+        this.sortBy = localStorage.getItem('sort-by') || this.sortBy;
     }
 
     loadData() {
@@ -67,9 +74,11 @@ export class TodoService {
     sort() {
         // console.log('sortBY', this.sortBy);
         // console.log('this.todos', this.todos);
+
+        // sort ascending
         this.todos.sort((todo1, todo2) => {
             if (this.sortBy === 'priority') {
-                return Number(todo2.priority) - Number(todo1.priority);
+                return Number(todo1.priority) - Number(todo2.priority);
             } else if (this.sortBy === 'title') {
                 if (todo1.title.toLowerCase() < todo2.title.toLowerCase()) {
                     return -1;
@@ -92,7 +101,11 @@ export class TodoService {
             date2 = new Date(date2);
             if (isNaN(date1)) return 1;
             if (isNaN(date2)) return -1;
-            return date2 - date1;
+            return date1 - date2;
+        }
+
+        if (this.sortDirection === 'desc') {
+            this.todos.reverse();
         }
     }
 

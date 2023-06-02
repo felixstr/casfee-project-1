@@ -16,6 +16,7 @@
 -   [x] use toggle for show/hide completed todos
 -   [ ] add favicon
 -   [ ] accessibility: keyboard navigation
+-   [x] add sort buttons
 
 ### CSS
 

@@ -3,14 +3,17 @@ import { todoService } from '../services/todo-service.js';
 
 const SELECTOR_LIST = '.js-list';
 const SELECTOR_SORT_SELECT = '.js-sort';
+const SELECTOR_SORT_BUTTONS = '.js-sort-buttons';
 const SELECTOR_BUTTON_NEW = '.js-button-new';
 const SELECTOR_TOGGLE_COMPLETED = '.js-toggle-completed';
 const MODIFIER_LIST_COMPLETED = 'todo-list--show-completed';
+const MODIFIER_BUTTON_CURRENT = 'button--current';
 
 class TodoController {
     constructor() {
         this.listElement = document.querySelector(SELECTOR_LIST);
         this.sortSelectElement = document.querySelector(SELECTOR_SORT_SELECT);
+        this.sortButtonsElement = document.querySelector(SELECTOR_SORT_BUTTONS);
         this.buttonNewlement = document.querySelector(SELECTOR_BUTTON_NEW);
         this.toggleCompletedElement = document.querySelector(SELECTOR_TOGGLE_COMPLETED);
 
@@ -18,41 +21,25 @@ class TodoController {
     }
 
     initialize() {
-        this.initEventHandlers();
+        // get data
         todoService.loadData();
-        this.setSortByValue();
-        this.setCompletedState();
+
+        // get completed state from local storage
+        this.initCompletedState();
+
+        // update sort element states
+        this.updateSortButtons();
+        this.updateSelectElement();
+
         this.renderTodoList();
+        this.initEventHandlers();
     }
 
     initEventHandlers() {
+        // new button
         this.buttonNewlement.addEventListener('click', () => this.dialogController.openDialog());
 
-        this.listElement.addEventListener('click', (event) => {
-            const id = Number(event.target.closest('[data-id]').dataset.id);
-            const todo = todoService.getById(id);
-
-            if (event.target.matches('.js-edit')) {
-                this.dialogController.openDialog(todo);
-            } else if (event.target.matches('.js-delete')) {
-                this.openDeleteConfirmDialog(todo);
-            } else if (event.target.matches('.js-done')) {
-                this.toggleDone(todo);
-            }
-        });
-
-        this.sortSelectElement.addEventListener('change', (event) => {
-            todoService.sortBy = event.target.value;
-            todoService.sort();
-            this.renderTodoList();
-            localStorage.setItem('sort-by', event.target.value);
-        });
-
-        this.toggleCompletedElement.addEventListener('change', (event) => {
-            this.listElement.classList.toggle(MODIFIER_LIST_COMPLETED, event.target.checked);
-            localStorage.setItem('completed', event.target.checked);
-        });
-
+        // on submit
         this.dialogController.onSubmit = (data) => {
             if (data.id) {
                 todoService.updateTodo(data, () => {
@@ -68,6 +55,75 @@ class TodoController {
                 });
             }
         };
+
+        // edit, delete, done buttons
+        this.listElement.addEventListener('click', (event) => {
+            const id = Number(event.target.closest('[data-id]').dataset.id);
+            const todo = todoService.getById(id);
+
+            if (event.target.matches('.js-edit')) {
+                this.dialogController.openDialog(todo);
+            } else if (event.target.matches('.js-delete')) {
+                this.openDeleteConfirmDialog(todo);
+            } else if (event.target.matches('.js-done')) {
+                this.toggleDone(todo);
+            }
+        });
+
+        // sort select
+        this.sortSelectElement.addEventListener('change', (event) =>
+            this.onChangeSortSelect(event.target.value)
+        );
+
+        // sort buttons
+        this.sortButtonsElement.addEventListener('click', (event) => {
+            if (event.target.matches('[data-sort-by]')) {
+                this.onClickSortButton(event.target);
+            }
+        });
+
+        // completed toggle
+        this.toggleCompletedElement.addEventListener('change', (event) => {
+            this.listElement.classList.toggle(MODIFIER_LIST_COMPLETED, event.target.checked);
+            localStorage.setItem('completed', event.target.checked);
+        });
+    }
+
+    onClickSortButton(button) {
+        const elementDataSet = button.dataset;
+        const currentButton = button.classList.contains(MODIFIER_BUTTON_CURRENT);
+
+        let sortDirection;
+        if (elementDataSet.sortDirection && !currentButton) {
+            sortDirection = elementDataSet.sortDirection;
+        } else if (elementDataSet.sortDirection && currentButton) {
+            sortDirection = elementDataSet.sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            sortDirection = todoService.sortDirection;
+        }
+
+        elementDataSet.sortDirection = sortDirection;
+
+        todoService.sortBy = elementDataSet.sortBy;
+        todoService.sortDirection = sortDirection;
+        todoService.sort();
+
+        this.updateSortButtons();
+        this.updateSelectElement();
+        this.renderTodoList();
+
+        localStorage.setItem('sort-by', elementDataSet.sortBy);
+    }
+
+    onChangeSortSelect(sortBy) {
+        todoService.sortBy = sortBy;
+        todoService.sortDirection = 'asc';
+        todoService.sort();
+
+        this.updateSortButtons();
+        this.renderTodoList();
+
+        localStorage.setItem('sort-by', sortBy);
     }
 
     renderTodoList() {
@@ -130,14 +186,22 @@ class TodoController {
         this.renderTodoList();
     }
 
-    setSortByValue() {
-        const sortBy = localStorage.getItem('sort-by') || todoService.sortBy;
-        todoService.sortBy = sortBy;
-        this.sortSelectElement.value = sortBy;
-        todoService.sort();
+    updateSortButtons() {
+        this.sortButtonsElement
+            .querySelectorAll('button')
+            .forEach((button) => button.classList.remove(MODIFIER_BUTTON_CURRENT));
+        const currentSortButton = this.sortButtonsElement.querySelector(
+            `[data-sort-by='${todoService.sortBy}']`
+        );
+        currentSortButton.classList.add(MODIFIER_BUTTON_CURRENT);
+        currentSortButton.dataset.sortDirection = todoService.sortDirection;
     }
 
-    setCompletedState() {
+    updateSelectElement() {
+        this.sortSelectElement.value = todoService.sortBy;
+    }
+
+    initCompletedState() {
         this.toggleCompletedElement.checked = localStorage.getItem('completed') === 'true' || false;
         this.listElement.classList.toggle(
             MODIFIER_LIST_COMPLETED,

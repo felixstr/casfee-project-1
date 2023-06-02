@@ -22,16 +22,31 @@
             <button class="button button--primary js-button-new">New</button>
 
             <div class="l-toolbar">
-                <div class="select">
-                    <label for="sort">Sort by</label>
-                    <select id="sort" class="js-sort">
-                        <option value="title">Title</option>
-                        <option value="duedate">Due date</option>
-                        <option value="createdate">Creation date</option>
-                        <option value="priority">Priority</option>
-                    </select>
+                <div class="l-toolbar__sort">
+                    <div class="select">
+                        <label for="sort">Sort by</label>
+                        <select id="sort" class="js-sort">
+                            <option value="title">Title</option>
+                            <option value="duedate">Due date</option>
+                            <option value="createdate">Creation date</option>
+                            <option value="priority">Priority</option>
+                        </select>
+                    </div>
+                    <div class="js-sort-buttons">
+                        <button class="button button--tiny button--sort" data-sort-by="title">
+                            Title
+                        </button>
+                        <button class="button button--tiny button--sort" data-sort-by="duedate">
+                            Due date
+                        </button>
+                        <button class="button button--tiny button--sort" data-sort-by="createdate">
+                            Creation date
+                        </button>
+                        <button class="button button--tiny button--sort" data-sort-by="priority">
+                            Priority
+                        </button>
+                    </div>
                 </div>
-
                 <div class="toggle-wrapper">
                     <label class="toggle-label" for="toggle-completed">Show completed</label>
                     <div class="toggle toggle--checkbox">
@@ -41,73 +56,7 @@
                 </div>
             </div>
 
-            <div class="todo-list js-list">
-                <div class="todo-item">
-                    <div class="todo-item__bullet">
-                        <div class="bullet"></div>
-                    </div>
-                    <div class="todo-item__content">
-                        <div class="todo-item__description">
-                            <div class="todo-item__title">
-                                default text Lorem ipsum dolor sit amet, consetetur sadipscing
-                                elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                                magna aliquyam erat.
-                            </div>
-                        </div>
-                        <div class="todo-item__due-date">duedate</div>
-                    </div>
-                    <div class="todo-item__action">
-                        <button class="button button--tiny">Edit</button>
-                    </div>
-                </div>
-                <div class="todo-item">
-                    <div class="todo-item__bullet">
-                        <div class="bullet"></div>
-                    </div>
-                    <div class="todo-item__content">
-                        <div class="todo-item__description">
-                            <div class="todo-item__prio">!</div>
-                            <div class="todo-item__title">title</div>
-                        </div>
-                        <div class="todo-item__text">
-                            Paragraph - default text Lorem ipsum dolor sit amet, consetetur
-                            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.
-                        </div>
-                        <div class="todo-item__due-date">duedate</div>
-                    </div>
-                    <div class="todo-item__action">
-                        <button class="button button--tiny">Edit</button>
-                    </div>
-                </div>
-                <div class="todo-item">
-                    <div class="todo-item__bullet">
-                        <div class="bullet"></div>
-                    </div>
-                    <div class="todo-item__content">
-                        <div class="todo-item__description">
-                            <div class="todo-item__prio">!!!</div>
-                            <div class="todo-item__title">text</div>
-                        </div>
-                        <div class="todo-item__due-date">duedate</div>
-                    </div>
-                    <div class="todo-item__action">
-                        <button class="button button--tiny">Edit</button>
-                    </div>
-                </div>
-                <div class="todo-item">
-                    <div class="todo-item__bullet">
-                        <div class="bullet bullet--done"></div>
-                    </div>
-                    <div class="todo-item__content">
-                        <div class="todo-item__description">
-                            <div class="todo-item__title">text</div>
-                        </div>
-                    </div>
-                    <div class="todo-item__action">
-                        <button class="button button--tiny">Edit</button>
-                    </div>
-                </div>
-            </div>
+            <div class="todo-list js-list"></div>
         </div>
 
         <dialog class="modal js-modal-form">

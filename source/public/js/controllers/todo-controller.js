@@ -135,65 +135,48 @@ class TodoController {
 
     renderItemTemplate(todo) {
         const prio = new Array(Number(todo.priority) + 1).join('!');
-
-        let duedateOutput;
-        let duedateModifier;
+        let duedateOutput = '';
+        let duedateModifier = '';
 
         if (todo.duedate) {
             const date = new Date(todo.duedate);
             const differenceInMs = date.getTime() - new Date();
             const differenceInDays = Math.ceil(differenceInMs / (1000 * 3600 * 24));
 
-            if (differenceInDays < 0) {
-                // past
-                duedateOutput = `${Math.abs(differenceInDays)} day${
-                    differenceInDays < -1 ? 's' : ''
-                } ago`;
-                duedateModifier = MODIFIER_DUEDATE_WARNING;
-            } else if (differenceInDays === 0) {
-                // today
-                duedateOutput = 'Today';
-                duedateModifier = MODIFIER_DUEDATE_WARNING;
-            } else if (differenceInDays > 0 && differenceInDays < 8) {
-                // within 7 days
-                duedateOutput = `In ${differenceInDays} day${differenceInDays > 1 ? 's' : ''}`;
-            } else {
-                // more than 7 days
+            if (Math.abs(differenceInDays) >= 7) {
                 duedateOutput = date.toLocaleDateString();
+            } else {
+                const rtf = new Intl.RelativeTimeFormat('de', { style: 'long', numeric: 'auto' });
+                duedateOutput = rtf.format(differenceInDays, 'day');
             }
 
-            if (todo.done) {
-                duedateModifier = undefined;
+            if (differenceInDays <= 0 && !todo.done) {
+                duedateModifier = MODIFIER_DUEDATE_WARNING;
             }
         }
 
-        return `<div class="todo-item js-todo-item" data-id="${todo.id}" data-completed="${
-            todo.done
-        }">
-                    <div class="todo-item__bullet ">
-                        <button class="bullet ${todo.done ? 'bullet--done' : ''} js-done"></button>
+        return `
+            <div class="todo-item js-todo-item" data-id="${todo.id}" data-completed="${todo.done}">
+                <div class="todo-item__bullet ">
+                    <button class="bullet ${todo.done ? 'bullet--done' : ''} js-done"></button>
+                </div>
+                <div class="todo-item__content">
+                    <div class="todo-item__description">
+                        ${prio && `<div class="todo-item__prio">${prio}</div>`}
+                        <div class="todo-item__title">${todo.title}</div>
                     </div>
-                    <div class="todo-item__content">
-                        <div class="todo-item__description">
-                            <div class="todo-item__prio">${prio}</div>
-                            <div class="todo-item__title">${todo.title}</div>
-                        </div>
-                        ${
-                            todo.description
-                                ? `<div class="todo-item__text">${todo.description}</div>`
-                                : ''
-                        }
-                        ${
-                            duedateOutput
-                                ? `<div class="todo-item__due-date ${duedateModifier}">${duedateOutput}</div>`
-                                : ''
-                        }   
-                    </div>
-                    <div class="todo-item__action">
-                        <button class="button button--tiny js-edit">Edit</button>
-                        <button class="button button--tiny js-delete">Delete</button>
-                    </div>
-                </div>`;
+                    ${todo.description && `<div class="todo-item__text">${todo.description}</div>`}
+                    ${
+                        duedateOutput &&
+                        `<div class="todo-item__due-date ${duedateModifier}">${duedateOutput}</div>`
+                    } 
+                </div>
+                <div class="todo-item__action">
+                    <button class="button button--tiny js-edit">Edit</button>
+                    <button class="button button--tiny js-delete">Delete</button>
+                </div>
+            </div>
+        `;
     }
 
     openDeleteConfirmDialog(todo) {

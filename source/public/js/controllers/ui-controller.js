@@ -1,3 +1,4 @@
+import { settingsStorage } from '../services/settings-storage.js';
 class UiController {
     constructor() {
         this.changeFormTypeWhileFocus();
@@ -20,11 +21,7 @@ class UiController {
     initModeToggle() {
         const modeToggleElement = document.querySelector('.js-mode-toggle');
         const bodyElement = document.querySelector('body');
-        let mode = localStorage.getItem('mode');
-        if (mode === null) {
-            mode = 'lightmode';
-            localStorage.setItem('mode', mode);
-        }
+        let mode = settingsStorage.getItem('colormode') || 'lightmode';
         bodyElement.classList.add(mode);
 
         if (modeToggleElement) {
@@ -32,7 +29,7 @@ class UiController {
             modeToggleElement.onchange = () => {
                 bodyElement.classList.remove(mode);
                 mode = mode === 'lightmode' ? 'darkmode' : 'lightmode';
-                localStorage.setItem('mode', mode);
+                settingsStorage.setItem('colormode', mode);
                 bodyElement.classList.add(mode);
             };
         }

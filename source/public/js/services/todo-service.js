@@ -1,18 +1,12 @@
 import { httpService } from './http-service.js';
 import { Todo } from './todo.js';
+import { settingsStorage } from './settings-storage.js';
 
 export class TodoService {
     constructor() {
         this.todos = [];
-        this.sortBy = 'title';
-        this.sortDirection = 'asc';
-
-        this.loadSortSettings();
-    }
-
-    loadSortSettings() {
-        this.sortBy = localStorage.getItem('sort-by') || this.sortBy;
-        this.sortDirection = localStorage.getItem('sort-direction') || this.sortDirection;
+        this.sortBy = settingsStorage.getItem('sort-by') || 'title';
+        this.sortDirection = settingsStorage.getItem('sort-direction') || 'asc';
     }
 
     async loadData() {

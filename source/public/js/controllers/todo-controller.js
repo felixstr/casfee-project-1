@@ -1,5 +1,6 @@
 import DialogController from './dialog-controller.js';
 import { todoService } from '../services/todo-service.js';
+import { settingsStorage } from '../services/settings-storage.js';
 
 const SELECTOR_LIST = '.js-list';
 const SELECTOR_SORT_BUTTONS = '.js-sort-buttons';
@@ -78,7 +79,7 @@ class TodoController {
         // completed toggle
         this.toggleCompletedElement.addEventListener('change', (event) => {
             this.listElement.classList.toggle(MODIFIER_LIST_COMPLETED, event.target.checked);
-            localStorage.setItem('completed', event.target.checked);
+            settingsStorage.setItem('completed', event.target.checked);
         });
     }
 
@@ -104,8 +105,8 @@ class TodoController {
         this.updateSortButtons();
         this.renderTodoList();
 
-        localStorage.setItem('sort-by', elementDataSet.sortBy);
-        localStorage.setItem('sort-direction', elementDataSet.sortDirection);
+        settingsStorage.setItem('sort-by', elementDataSet.sortBy);
+        settingsStorage.setItem('sort-direction', elementDataSet.sortDirection);
     }
 
     renderTodoList() {
@@ -187,7 +188,8 @@ class TodoController {
     }
 
     initCompletedToggleState() {
-        this.toggleCompletedElement.checked = localStorage.getItem('completed') === 'true' || false;
+        this.toggleCompletedElement.checked = settingsStorage.getItem('completed');
+
         this.listElement.classList.toggle(
             MODIFIER_LIST_COMPLETED,
             this.toggleCompletedElement.checked

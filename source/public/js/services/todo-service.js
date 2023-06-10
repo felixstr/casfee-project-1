@@ -1,3 +1,4 @@
+import { httpService } from './http-service.js';
 import { Todo } from './todo.js';
 
 export class TodoService {
@@ -6,42 +7,46 @@ export class TodoService {
         this.sortBy = 'title';
         this.sortDirection = 'asc';
 
-        this.getSortByValue();
+        this.loadSortSettings();
     }
 
-    getSortByValue() {
+    loadSortSettings() {
         this.sortBy = localStorage.getItem('sort-by') || this.sortBy;
+        this.sortDirection = localStorage.getItem('sort-direction') || this.sortDirection;
     }
 
-    loadData() {
-        this.todos = JSON.parse(localStorage.getItem('todos')) || [];
+    async loadData() {
+        const todoJson = await httpService.ajax('GET', 'api/todos');
+
+        this.todos = todoJson.map(
+            (item) =>
+                new Todo(
+                    item._id,
+                    item.title,
+                    item.description,
+                    item.duedate,
+                    item.priority,
+                    item.done,
+                    item.createdate
+                )
+        );
+
         this.sort();
         // console.log('loadData', this.todos);
     }
 
-    save() {
-        localStorage.setItem('todos', JSON.stringify(this.todos));
-    }
-
-    addTodo({ title, description, duedate, priority }, callback) {
-        // console.log('TodoService.addTodo', title);
-        const id = this.createNewId();
-        const todo = new Todo(id, title, description, duedate, priority);
+    async addTodo({ title, description, duedate, priority }, callback) {
+        const todo = new Todo(undefined, title, description, duedate, priority);
+        const answer = await httpService.ajax('POST', 'api/todos', todo);
+        todo.id = answer._id;
 
         this.todos.push(todo);
-
         this.sort();
-        this.save();
 
-        // simulate loading
-        setTimeout(() => {
-            callback(todo);
-        }, 500);
+        callback(todo);
     }
 
-    updateTodo({ id, title, description, duedate, priority, done }, callback) {
-        // console.log('updateTodo id', id);
-
+    async updateTodo({ id, title, description, duedate, priority, done }, callback) {
         const todo = this.getById(id);
 
         // console.log('updateTodo', todo);
@@ -55,27 +60,21 @@ export class TodoService {
         }
 
         this.sort();
-        this.save();
 
-        // simulate loading
-        setTimeout(() => {
-            callback(todo);
-        }, 500);
+        await httpService.ajax('PUT', `api/todos/${todo.id}`, todo);
+        callback(todo);
     }
 
     getById(id) {
-        return this.todos.find((todo) => todo.id === Number(id));
+        return this.todos.find((todo) => todo.id === id);
     }
 
-    remove(todo) {
+    async delete(todo) {
+        await httpService.ajax('DELETE', `api/todos/${todo.id}`);
         this.todos.splice(this.todos.indexOf(todo), 1);
-        this.save();
     }
 
     sort() {
-        // console.log('sortBY', this.sortBy);
-        // console.log('this.todos', this.todos);
-
         // sort ascending
         this.todos.sort((todo1, todo2) => {
             if (this.sortBy === 'priority') {
@@ -108,12 +107,6 @@ export class TodoService {
         if (this.sortDirection === 'desc') {
             this.todos.reverse();
         }
-    }
-
-    createNewId() {
-        if (this.todos.length === 0) return 1;
-        const objectWithBiggestId = this.todos.reduce((a, b) => (a.id > b.id ? a : b));
-        return objectWithBiggestId.id + 1;
     }
 }
 

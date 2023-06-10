@@ -21,9 +21,9 @@ class TodoController {
         this.dialogController = new DialogController();
     }
 
-    initialize() {
+    async initialize() {
         // get data
-        todoService.loadData();
+        await todoService.loadData();
 
         // get completed state from local storage
         this.initCompletedState();
@@ -59,7 +59,7 @@ class TodoController {
 
         // edit, delete, done buttons
         this.listElement.addEventListener('click', (event) => {
-            const id = Number(event.target.closest('[data-id]').dataset.id);
+            const id = event.target.closest('[data-id]').dataset.id;
             const todo = todoService.getById(id);
 
             if (event.target.matches('.js-edit')) {
@@ -114,6 +114,7 @@ class TodoController {
         this.renderTodoList();
 
         localStorage.setItem('sort-by', elementDataSet.sortBy);
+        localStorage.setItem('sort-direction', elementDataSet.sortDirection);
     }
 
     onChangeSortSelect(sortBy) {
@@ -179,9 +180,9 @@ class TodoController {
         `;
     }
 
-    openDeleteConfirmDialog(todo) {
+    async openDeleteConfirmDialog(todo) {
         if (window.confirm('Todo wirklich löschen?')) {
-            todoService.remove(todo);
+            await todoService.delete(todo);
             this.renderTodoList();
         }
     }

@@ -31,7 +31,7 @@ export default class DialogController {
 
     openDialog(todo) {
         // console.log('openDialog', todo);
-        if (todo && todo.id >= 0) {
+        if (todo && todo.id) {
             this.idFieldElement.value = todo.id;
             this.titleFieldElement.value = todo.title;
             this.descriptionFieldElement.innerText = todo.description;
@@ -45,6 +45,7 @@ export default class DialogController {
     closeDialog() {
         this.formElement.reset();
         this.descriptionFieldElement.innerText = ''; // TODO: textfield is not reset with .reset() ??
+        this.idFieldElement.value = ''; // TODO: hidden field is not reset with .reset() ??
 
         this.modalFormElement.addEventListener('animationend', closeDialogAfter);
         this.modalFormElement.classList.add('close');

@@ -37,3 +37,4 @@
 -   [x] duedate: warn color if in the past
 -   [x] use `Intl.RelativeTimeFormat`
 -   [ ] add REST backend with database
+-   [ ] set createdate in the backend

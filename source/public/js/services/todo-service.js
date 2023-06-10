@@ -78,20 +78,15 @@ export class TodoService {
         // sort ascending
         this.todos.sort((todo1, todo2) => {
             if (this.sortBy === 'priority') {
-                return Number(todo1.priority) - Number(todo2.priority);
+                return todo1.priority - todo2.priority;
             } else if (this.sortBy === 'title') {
-                if (todo1.title.toLowerCase() < todo2.title.toLowerCase()) {
-                    return -1;
-                }
-                if (todo1.title.toLowerCase() > todo2.title.toLowerCase()) {
-                    return 1;
-                }
-                return 0;
+                const title1 = todo1.title.toLowerCase();
+                const title2 = todo2.title.toLowerCase();
+
+                return title1 > title2 ? 1 : title1 < title2 ? -1 : 0;
             } else if (this.sortBy === 'duedate') {
-                // console.log('createdate', dateSorter(todo1.duedate, todo2.duedate));
                 return dateSorter(todo1.duedate, todo2.duedate);
             } else if (this.sortBy === 'createdate') {
-                // console.log('createdate', dateSorter(todo1.createdate, todo2.createdate));
                 return dateSorter(todo1.createdate, todo2.createdate);
             }
         });

@@ -2,7 +2,6 @@ import DialogController from './dialog-controller.js';
 import { todoService } from '../services/todo-service.js';
 
 const SELECTOR_LIST = '.js-list';
-const SELECTOR_SORT_SELECT = '.js-sort';
 const SELECTOR_SORT_BUTTONS = '.js-sort-buttons';
 const SELECTOR_BUTTON_NEW = '.js-button-new';
 const SELECTOR_TOGGLE_COMPLETED = '.js-toggle-completed';
@@ -13,7 +12,6 @@ const MODIFIER_DUEDATE_WARNING = 'todo-item__due-date--warning';
 class TodoController {
     constructor() {
         this.listElement = document.querySelector(SELECTOR_LIST);
-        this.sortSelectElement = document.querySelector(SELECTOR_SORT_SELECT);
         this.sortButtonsElement = document.querySelector(SELECTOR_SORT_BUTTONS);
         this.buttonNewlement = document.querySelector(SELECTOR_BUTTON_NEW);
         this.toggleCompletedElement = document.querySelector(SELECTOR_TOGGLE_COMPLETED);
@@ -26,11 +24,10 @@ class TodoController {
         await todoService.loadData();
 
         // get completed state from local storage
-        this.initCompletedState();
+        this.initCompletedToggleState();
 
         // update sort element states
         this.updateSortButtons();
-        this.updateSelectElement();
 
         this.renderTodoList();
         this.initEventHandlers();
@@ -71,11 +68,6 @@ class TodoController {
             }
         });
 
-        // sort select
-        this.sortSelectElement.addEventListener('change', (event) =>
-            this.onChangeSortSelect(event.target.value)
-        );
-
         // sort buttons
         this.sortButtonsElement.addEventListener('click', (event) => {
             if (event.target.matches('[data-sort-by]')) {
@@ -110,22 +102,10 @@ class TodoController {
         todoService.sort();
 
         this.updateSortButtons();
-        this.updateSelectElement();
         this.renderTodoList();
 
         localStorage.setItem('sort-by', elementDataSet.sortBy);
         localStorage.setItem('sort-direction', elementDataSet.sortDirection);
-    }
-
-    onChangeSortSelect(sortBy) {
-        todoService.sortBy = sortBy;
-        todoService.sortDirection = 'asc';
-        todoService.sort();
-
-        this.updateSortButtons();
-        this.renderTodoList();
-
-        localStorage.setItem('sort-by', sortBy);
     }
 
     renderTodoList() {
@@ -206,11 +186,7 @@ class TodoController {
         currentSortButton.dataset.sortDirection = todoService.sortDirection;
     }
 
-    updateSelectElement() {
-        this.sortSelectElement.value = todoService.sortBy;
-    }
-
-    initCompletedState() {
+    initCompletedToggleState() {
         this.toggleCompletedElement.checked = localStorage.getItem('completed') === 'true' || false;
         this.listElement.classList.toggle(
             MODIFIER_LIST_COMPLETED,

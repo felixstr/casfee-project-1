@@ -1,4 +1,5 @@
 .button {
+    position: relative;
     background: var(--color-secondary);
     color: var(--color-on-secondary);
     font-size: 1.6rem;

@@ -2,7 +2,7 @@
     /* colors light */
     --color-light-surface: white;
     --color-light-on-surface: #1a1a1a;
-    --color-light-on-surface-light: #424242;
+    --color-light-on-surface-light: #585858;
 
     --color-light-primary-surface: #1157b9;
     --color-light-primary-text: #1157b9;
@@ -20,7 +20,7 @@
     /* colors dark */
     --color-dark-surface: black;
     --color-dark-on-surface: #f4f4f4;
-    --color-dark-on-surface-light: #d7d7d7;
+    --color-dark-on-surface-light: #bcbcbc;
 
     --color-dark-primary-surface: #6a00db;
     --color-dark-primary-text: #ae6af6;

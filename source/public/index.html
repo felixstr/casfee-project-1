@@ -5,26 +5,34 @@
         <meta charset="utf-8" />
         <link href="styles/styles.css" rel="stylesheet" />
         <link rel="icon" href="favicon.ico" sizes="any" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <script src="js/controllers/ui-controller.js" type="module" defer></script>
         <script src="js/controllers/todo-controller.js" type="module" defer></script>
     </head>
     <body>
-        <div class="l-mode-toggle">
-            <div class="toggle toggle--tiny toggle--colormode">
-                <input id="toggle-colormode" type="checkbox" class="js-mode-toggle" />
-                <label for="toggle-colormode"></label>
-            </div>
-        </div>
-
         <div class="l-wrapper">
+            <div class="l-mode-toggle">
+                <div class="toggle toggle--tiny toggle--colormode">
+                    <input id="toggle-colormode" type="checkbox" class="js-mode-toggle" />
+                    <label for="toggle-colormode"></label>
+                </div>
+            </div>
+
             <h1>Todos</h1>
 
             <button class="button button--primary js-button-new">New</button>
 
             <div class="l-toolbar">
-                <div class="l-toolbar__sort">
-                    <div class="js-sort-buttons">
+                <div class="toggle-wrapper">
+                    <label class="toggle-label" for="toggle-completed">Show completed</label>
+                    <div class="toggle toggle--checkbox">
+                        <input id="toggle-completed" type="checkbox" class="js-toggle-completed" />
+                        <label for="toggle-completed"></label>
+                    </div>
+                </div>
+                <div class="l-toolbar__sort js-sort-buttons">
+                    <div class="l-toolbar__sort-row js-sort-buttons">
                         <button class="button button--tiny button--sort" data-sort-by="title">
                             Title
                         </button>
@@ -39,17 +47,12 @@
                         </button>
                     </div>
                 </div>
-                <div class="toggle-wrapper">
-                    <label class="toggle-label" for="toggle-completed">Show completed</label>
-                    <div class="toggle toggle--checkbox">
-                        <input id="toggle-completed" type="checkbox" class="js-toggle-completed" />
-                        <label for="toggle-completed"></label>
-                    </div>
-                </div>
             </div>
 
             <div class="todo-list js-list"></div>
         </div>
+
+        <footer class="l-footer">CAS FEE Project 1 ・ Felix Stricker ・ 2023</footer>
 
         <dialog class="modal js-modal-form">
             <div class="l-wrapper">

@@ -46,6 +46,9 @@
 }
 
 .todo-item__action {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
     opacity: 0;
     transition: var(--transition-fast);
 }

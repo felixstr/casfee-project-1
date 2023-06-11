@@ -6,7 +6,7 @@ h2 {
 
 h1 {
     font-size: 4.8rem;
-    margin-bottom: 1.6rem;
+    margin-bottom: clamp(1.6rem, 4vw, 3.2rem);
 }
 
 h2 {

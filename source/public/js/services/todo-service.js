@@ -10,9 +10,9 @@ export class TodoService {
     }
 
     async loadData() {
-        const todoJson = await httpService.ajax('GET', 'api/todos');
+        const dbJson = await httpService.ajax('GET', 'api/todos');
 
-        this.todos = todoJson.map(
+        this.todos = dbJson.map(
             (item) =>
                 new Todo(
                     item._id,
@@ -69,6 +69,9 @@ export class TodoService {
     }
 
     sort() {
+        // reset sorting to always have the same order for elements with the same values
+        this.todos.sort((todo1, todo2) => dateSorter(todo1.createdate, todo2.createdate));
+
         // sort ascending
         this.todos.sort((todo1, todo2) => {
             if (this.sortBy === 'priority') {
@@ -76,12 +79,9 @@ export class TodoService {
             } else if (this.sortBy === 'title') {
                 const title1 = todo1.title.toLowerCase();
                 const title2 = todo2.title.toLowerCase();
-
                 return title1 > title2 ? 1 : title1 < title2 ? -1 : 0;
             } else if (this.sortBy === 'duedate') {
                 return dateSorter(todo1.duedate, todo2.duedate);
-            } else if (this.sortBy === 'createdate') {
-                return dateSorter(todo1.createdate, todo2.createdate);
             }
         });
 

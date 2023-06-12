@@ -32,9 +32,9 @@
 -   [x] save todos in local storage
 -   [x] save sortBy in local storage
 -   [x] organise according to MVC
--   [ ] (optional) create service/storage class for localstorage settings (color mode, complete toggle)
+-   [x] (optional) create service/storage class for localstorage settings (color mode, complete toggle)
 -   [x] duedate: show day count if less than 7 days
 -   [x] duedate: warn color if in the past
 -   [x] use `Intl.RelativeTimeFormat`
--   [ ] add REST backend with database
--   [ ] set createdate in the backend
+-   [x] add REST backend with database
+-   [x] set createdate in the backend

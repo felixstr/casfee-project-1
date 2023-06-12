@@ -1,7 +1,7 @@
 import Datastore from 'nedb-promises';
 
 export class Todo {
-    constructor(title, description, duedate, priority, done, createdate) {
+    constructor(title, description, duedate, priority, done, createdate = new Date().toJSON()) {
         this.title = title;
         this.description = description;
         this.duedate = duedate;
@@ -17,13 +17,14 @@ export class TodoStore {
         this.db = db || new Datastore(options);
     }
 
-    async add(title, description, duedate, priority, done, createdate) {
-        const todo = new Todo(title, description, duedate, priority, done, createdate);
+    async add(title, description, duedate, priority, done) {
+        const todo = new Todo(title, description, duedate, priority, done);
         return this.db.insert(todo);
     }
 
-    async update(id, title, description, duedate, priority, done, createdate) {
-        const todo = new Todo(title, description, duedate, priority, done, createdate);
+    async update(id, title, description, duedate, priority, done) {
+        const oldTodo = await this.get(id);
+        const todo = new Todo(title, description, duedate, priority, done, oldTodo.createdate);
         await this.db.update({ _id: id }, { $set: todo });
         return this.get(id);
     }

@@ -1,13 +1,5 @@
 export class Todo {
-    constructor(
-        id,
-        title,
-        description,
-        duedate,
-        priority,
-        done = false,
-        createdate = new Date().toJSON()
-    ) {
+    constructor(id, title, description, duedate, priority, done = false, createdate) {
         this.id = id;
         this.title = title;
         this.description = description;

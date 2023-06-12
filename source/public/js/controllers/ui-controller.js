@@ -1,21 +1,26 @@
 import { settingsStorage } from '../services/settings-storage.js';
 class UiController {
     constructor() {
-        this.changeFormTypeWhileFocus();
+        this.changeSpecialInputTypeWhileFocus();
         this.initModeToggle();
     }
 
-    changeFormTypeWhileFocus() {
-        const dateElements = document.querySelectorAll(
-            '.textfield input[type=date], .textfield input[type=number]'
-        );
-        dateElements.forEach((item) => {
-            const originalType = item.type;
-            item.type = 'text';
-            item.onfocus = () => (item.type = originalType);
-            item.onblur = () =>
-                item.value === '' ? (item.type = 'text') : (item.type = originalType);
-        });
+    changeSpecialInputTypeWhileFocus() {
+        //
+        document
+            .querySelectorAll('.textfield input[type=date], .textfield input[type=number]')
+            .forEach((item) => {
+                const originalType = item.type;
+                item.type = 'text';
+
+                const fnResetType = () => {
+                    item.value === '' ? (item.type = 'text') : (item.type = originalType);
+                };
+
+                item.addEventListener('focus', () => (item.type = originalType));
+                item.addEventListener('blur', fnResetType);
+                item.addEventListener('resetType', fnResetType);
+            });
     }
 
     initModeToggle() {

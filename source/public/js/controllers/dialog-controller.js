@@ -20,6 +20,10 @@ export default class DialogController {
 
     initEventHandlers() {
         this.buttonCancelElement.addEventListener('click', () => this.closeDialog());
+        this.dialogElement.addEventListener('cancel', (e) => {
+            e.preventDefault();
+            this.closeDialog();
+        });
 
         this.formElement.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -32,7 +36,6 @@ export default class DialogController {
     }
 
     openDialog(todo) {
-        // console.log('openDialog', todo);
         if (todo && todo.id) {
             this.idFieldElement.value = todo.id;
             this.titleFieldElement.value = todo.title;
@@ -41,6 +44,9 @@ export default class DialogController {
             this.priorityFieldElement.value = todo.priority;
         }
 
+        this.duedateFieldElement.dispatchEvent(new Event('resetType'));
+        this.priorityFieldElement.dispatchEvent(new Event('resetType'));
+
         this.dialogElement.showModal();
     }
 
@@ -48,6 +54,9 @@ export default class DialogController {
         this.formElement.reset(); // resets input[type=text], input[type=number], input[type=date]
         this.descriptionFieldElement.innerText = '';
         this.idFieldElement.value = '';
+
+        this.duedateFieldElement.dispatchEvent(new Event('resetType'));
+        this.priorityFieldElement.dispatchEvent(new Event('resetType'));
 
         this.dialogElement.addEventListener('animationend', closeDialogAfter);
         this.dialogElement.classList.add('close');

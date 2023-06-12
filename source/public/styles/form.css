@@ -105,6 +105,9 @@
 }
 
 /* input date styling */
+input[type='date'] {
+    line-height: 1;
+}
 input::-webkit-datetime-edit {
     padding: 0;
     margin: 0;

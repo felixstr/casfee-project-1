@@ -21,6 +21,7 @@ p {
     font-size: 1.8rem;
 }
 
-textarea {
-    font-family: system-ui, Arial, sans-serif;
+textarea,
+input {
+    font-family: Hind, system-ui, Arial, sans-serif;
 }

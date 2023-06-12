@@ -47,8 +47,8 @@ export class TodoService {
 
         todo.title = title;
         todo.description = description;
-        todo.duedate = duedate;
-        todo.priority = priority;
+        todo.setDuedate(duedate);
+        todo.setPriority(priority);
         if (done) {
             todo.done = done;
         }

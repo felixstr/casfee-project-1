@@ -1,9 +1,11 @@
-// TODO: use constants for SELECTORS
+const SELECTOR_DIALOG = '.js-dialog';
+const SELECTOR_BUTTON_CANCEL = '.js-button-cancel';
+const SELECTOR_FORM = '.js-form';
 export default class DialogController {
     constructor() {
-        this.modalFormElement = document.querySelector('.js-modal-form');
-        this.buttonCancelElement = document.querySelector('.js-button-cancel');
-        this.formElement = document.querySelector('.js-form');
+        this.dialogElement = document.querySelector(SELECTOR_DIALOG);
+        this.buttonCancelElement = document.querySelector(SELECTOR_BUTTON_CANCEL);
+        this.formElement = document.querySelector(SELECTOR_FORM);
 
         this.titleFieldElement = this.formElement.querySelector('[name="title"]');
         this.descriptionFieldElement = this.formElement.querySelector('[name="description"]');
@@ -39,16 +41,16 @@ export default class DialogController {
             this.priorityFieldElement.value = todo.priority;
         }
 
-        this.modalFormElement.showModal();
+        this.dialogElement.showModal();
     }
 
     closeDialog() {
-        this.formElement.reset();
-        this.descriptionFieldElement.innerText = ''; // TODO: textfield is not reset with .reset() ??
-        this.idFieldElement.value = ''; // TODO: hidden field is not reset with .reset() ??
+        this.formElement.reset(); // resets input[type=text], input[type=number], input[type=date]
+        this.descriptionFieldElement.innerText = '';
+        this.idFieldElement.value = '';
 
-        this.modalFormElement.addEventListener('animationend', closeDialogAfter);
-        this.modalFormElement.classList.add('close');
+        this.dialogElement.addEventListener('animationend', closeDialogAfter);
+        this.dialogElement.classList.add('close');
 
         function closeDialogAfter(event) {
             event.target.close();

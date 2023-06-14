@@ -12,6 +12,7 @@ export default class DialogController {
         this.duedateFieldElement = this.formElement.querySelector('[name="duedate"]');
         this.priorityFieldElement = this.formElement.querySelector('[name="priority"]');
         this.idFieldElement = this.formElement.querySelector('[name="id"]');
+        this.titleElement = this.formElement.querySelector('h2');
 
         this.onSubmit = () => console.error('onSubmit() function is not implemented');
 
@@ -42,6 +43,9 @@ export default class DialogController {
             this.descriptionFieldElement.innerText = todo.description;
             this.duedateFieldElement.value = todo.duedate;
             this.priorityFieldElement.value = todo.priority;
+            this.titleElement.innerText = 'Edit todo';
+        } else {
+            this.titleElement.innerText = 'Add todo';
         }
 
         this.duedateFieldElement.dispatchEvent(new Event('resetType'));

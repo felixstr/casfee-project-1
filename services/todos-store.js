@@ -23,9 +23,8 @@ export class TodoStore {
     }
 
     async update(id, title, description, duedate, priority, done) {
-        const oldTodo = await this.get(id);
-        const todo = new Todo(title, description, duedate, priority, done, oldTodo.createdate);
-        await this.db.update({ _id: id }, { $set: todo });
+        const todo = new Todo(title, description, duedate, priority, done);
+        await this.db.update({ _id: id }, todo);
         return this.get(id);
     }
 

@@ -6,7 +6,6 @@ export class TodosController {
     }
 
     async addTodo(req, res) {
-        // console.log('req.body', req.body);
         res.json(
             await todosStore.add(
                 req.body.title,
@@ -19,7 +18,6 @@ export class TodosController {
     }
 
     async updateTodo(req, res) {
-        // console.log('updateTodo', req.body);
         res.json(
             await todosStore.update(
                 req.params.id,
@@ -33,7 +31,7 @@ export class TodosController {
     }
 
     async deleteTodo(req, res) {
-        res.json(await todosStore.delete(req.params.id)); // TODO should return 402 if not ok
+        res.json(await todosStore.delete(req.params.id));
     }
 
     async getTodo(req, res) {

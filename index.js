@@ -12,10 +12,11 @@ function notFound(req, res) {
 
 app.use(express.static('source/public'));
 app.use(bodyParser.json());
+/*
 app.use(function (req, res, next) {
     setTimeout(next, 1000);
 });
-
+*/
 app.get('/', function (req, res) {
     res.sendFile('/index.html', { root: '/public/' });
 });

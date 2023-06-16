@@ -4,29 +4,24 @@
         <title>CAS FEE: Project 1 - UI Library</title>
         <meta charset="utf-8" />
         <link href="styles/styles.css" rel="stylesheet" />
-        <script defer src="scripts/app.js"></script>
+
+        <script src="js/controllers/ui-controller.js" type="module" defer></script>
     </head>
     <body class="darkmode">
         <h1>UI Library</h1>
 
         <h2>Text</h2>
         <p>
-            Paragraph - default text Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat.
+            Paragraph - default text Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
         </p>
-        <p>
-            Paragraph - default text Lorem ipsum dolor sit amet, consetetur
-            sadipscing.
-        </p>
+        <p>Paragraph - default text Lorem ipsum dolor sit amet, consetetur sadipscing.</p>
 
         <h2>Button</h2>
         <button class="button">Button</button>
         <button class="button button--primary">Primary Button</button>
         <button class="button button--small">Small Button</button>
-        <button class="button button--primary button--small">
-            Small Primary Button
-        </button>
+        <button class="button button--primary button--small">Small Primary Button</button>
         <button class="button button--tiny">Small Button</button>
 
         <h2>Select</h2>
@@ -47,27 +42,18 @@
         </div>
         <div class="toggle">
             <input id="toggle" type="checkbox" checked />
-            <label
-                for="toggle"
-                data-checked="Dark"
-                data-unchecked="Light"
-            ></label>
+            <label for="toggle"></label>
         </div>
 
         <h2>Textfield</h2>
         <div class="l-form">
             <div class="textfield">
-                <input id="textfield" type="text" placeholder="hiden" />
-                <label for="textfield">Label</label>
+                <input id="textfield1" type="text" placeholder="hiden" />
+                <label for="textfield1">Label</label>
             </div>
             <div class="textfield">
-                <input
-                    id="textfield"
-                    type="text"
-                    value="test"
-                    placeholder="hidden"
-                />
-                <label for="textfield">Label</label>
+                <input id="textfield2" type="text" value="test" placeholder="hidden" />
+                <label for="textfield2">Label</label>
             </div>
             <div class="textfield">
                 <input id="date" type="date" placeholder="hidden" />

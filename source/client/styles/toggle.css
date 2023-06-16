@@ -4,7 +4,7 @@
     --toggle-padding: 0.4rem;
     --toggle-button-size: calc(var(--toggle-height) - (2 * var(--toggle-padding)));
 
-    display: flex;
+    display: inline-flex;
     position: relative;
 }
 

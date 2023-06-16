@@ -22,7 +22,7 @@ npm start
 | ------------- | ------ | ------------- |
 | api/todos     | GET    | get all todos |
 | api/todos     | POST   | add a todo    |
-| api/todos/:id | PUT    | update a todo |
+| api/todos/:id | PATCH  | update a todo |
 | api/todos/:id | DELETE | delete a todo |
 | api/todos/:id | GET    | get a todo    |
 

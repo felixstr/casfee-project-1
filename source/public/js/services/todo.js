@@ -7,8 +7,6 @@ export class Todo {
         this.setPriority(priority);
         this.done = done;
         this.createdate = createdate;
-
-        // console.log('Todo', this);
     }
 
     setPriority(priority) {

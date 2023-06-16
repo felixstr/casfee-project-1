@@ -1,6 +1,6 @@
-import DialogController from './dialog-controller';
-import { todoService } from '../services/todo-service';
-import { settingsStorage } from '../services/settings-storage';
+import DialogController from './dialog-controller.js';
+import { todoService } from '../services/todo-service.js';
+import { settingsStorage } from '../services/settings-storage.js';
 
 const SELECTOR_LIST = '.js-list';
 const SELECTOR_SORT_BUTTONS = '.js-sort-buttons';

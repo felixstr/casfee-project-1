@@ -1,6 +1,6 @@
-import { httpService } from './http-service';
-import { Todo } from './todo';
-import { settingsStorage } from './settings-storage';
+import { httpService } from './http-service.js';
+import { Todo } from './todo.js';
+import { settingsStorage } from './settings-storage.js';
 
 export class TodoService {
     constructor() {

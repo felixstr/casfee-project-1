@@ -1,4 +1,4 @@
-import { settingsStorage } from '../services/settings-storage';
+import { settingsStorage } from '../services/settings-storage.js';
 class UiController {
     constructor() {
         this.changeSpecialInputTypeWhileFocus();

@@ -38,3 +38,4 @@
 -   [x] use `Intl.RelativeTimeFormat`
 -   [x] add REST backend with database
 -   [x] set createdate in the backend
+-   [x] change file structure: separate folders in `server` and `client`

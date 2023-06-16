@@ -20,7 +20,7 @@ export class Todo {
 
 export class TodoStore {
     constructor(db) {
-        const options = { filename: './data/todos.db', autoload: true };
+        const options = { filename: './source/server/data/todos.db', autoload: true };
         this.db = db || new Datastore(options);
     }
 

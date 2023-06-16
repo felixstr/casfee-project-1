@@ -7,7 +7,7 @@
         "start": "node index.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "stylelint": "stylelint \"**/*.css\"",
-        "w3c": "html-validator --file ./source/public/index.html  --verbose",
+        "w3c": "html-validator --file ./source/client/index.html  --verbose",
         "eslint": "eslint \"**/*.js\"",
         "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\""
     },
@@ -15,19 +15,15 @@
     "author": "mgfeller",
     "license": "ISC",
     "devDependencies": {
-        "eslint": "^8.14.0",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-config-prettier": "^8.5.0",
-        "eslint-plugin-import": "^2.26.0",
+        "eslint": "^8.42.0",
         "html-validator-cli": "^7.0.1",
-        "prettier": "2.6.2",
-        "stylelint": "^14.7.1",
-        "stylelint-config-standard": "^25.0.0"
+        "prettier": "^2.8.8",
+        "stylelint": "^15.7.0",
+        "stylelint-config-recommended": "^12.0.0"
     },
     "dependencies": {
         "body-parser": "^1.20.0",
         "express": "^4.18.1",
-        "express-jwt": "^8.4.1",
         "nedb-promises": "^6.1.0"
     }
 }

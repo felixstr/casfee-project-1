@@ -1,12 +1,19 @@
 import Datastore from 'nedb-promises';
 
 export class Todo {
-    constructor(title, description, duedate, priority, done, createdate = new Date().toJSON()) {
+    constructor(
+        title,
+        description,
+        duedate,
+        priority,
+        completed,
+        createdate = new Date().toJSON()
+    ) {
         this.title = title;
         this.description = description;
         this.duedate = duedate;
         this.priority = priority;
-        this.done = done;
+        this.completed = completed;
         this.createdate = createdate;
     }
 }
@@ -17,13 +24,13 @@ export class TodoStore {
         this.db = db || new Datastore(options);
     }
 
-    async add(title, description, duedate, priority, done) {
-        const todo = new Todo(title, description, duedate, priority, done);
+    async add(title, description, duedate, priority, completed) {
+        const todo = new Todo(title, description, duedate, priority, completed);
         return this.db.insert(todo);
     }
 
-    async update(id, title, description, duedate, priority, done) {
-        const todo = new Todo(title, description, duedate, priority, done);
+    async update(id, title, description, duedate, priority, completed) {
+        const todo = new Todo(title, description, duedate, priority, completed);
         await this.db.update({ _id: id }, todo);
         return this.get(id);
     }

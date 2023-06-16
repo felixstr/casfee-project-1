@@ -1,14 +1,12 @@
 export class Todo {
-    constructor(id, title, description, duedate, priority, done = false, createdate) {
+    constructor(id, title, description, duedate, priority, completed = false, createdate) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.setDuedate(duedate);
         this.setPriority(priority);
-        this.done = done;
+        this.completed = completed;
         this.createdate = createdate;
-
-        // console.log('Todo', this);
     }
 
     setPriority(priority) {

@@ -12,7 +12,7 @@ export class TodosController {
                 req.body.description,
                 req.body.duedate,
                 req.body.priority,
-                req.body.done
+                req.body.completed
             )
         );
     }
@@ -25,7 +25,7 @@ export class TodosController {
                 req.body.description,
                 req.body.duedate,
                 req.body.priority,
-                req.body.done
+                req.body.completed
             )
         );
     }

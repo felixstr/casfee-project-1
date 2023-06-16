@@ -55,7 +55,7 @@ class TodoController {
             }
         };
 
-        // edit, delete, done buttons
+        // edit, delete, completed buttons
         this.listElement.addEventListener('click', (event) => {
             const id = event.target.closest('[data-id]').dataset.id;
             const todo = todoService.getById(id);
@@ -64,7 +64,7 @@ class TodoController {
                 this.dialogController.openDialog(todo);
             } else if (event.target.matches('.js-delete')) {
                 this.openDeleteConfirmDialog(todo);
-            } else if (event.target.matches('.js-done')) {
+            } else if (event.target.matches('.js-completed')) {
                 this.toggleDone(todo);
             }
         });
@@ -132,15 +132,19 @@ class TodoController {
                 duedateOutput = rtf.format(differenceInDays, 'day');
             }
 
-            if (differenceInDays <= 0 && !todo.done) {
+            if (differenceInDays <= 0 && !todo.completed) {
                 duedateModifier = MODIFIER_DUEDATE_WARNING;
             }
         }
 
         return `
-            <div class="todo-item js-todo-item" data-id="${todo.id}" data-completed="${todo.done}">
+            <div class="todo-item js-todo-item" data-id="${todo.id}" data-completed="${
+            todo.completed
+        }">
                 <div class="todo-item__bullet ">
-                    <button class="bullet ${todo.done ? 'bullet--done' : ''} js-done"></button>
+                    <button class="bullet ${
+                        todo.completed ? 'bullet--completed' : ''
+                    } js-completed"></button>
                 </div>
                 <div class="todo-item__content">
                     <div class="todo-item__description">
@@ -169,7 +173,7 @@ class TodoController {
     }
 
     toggleDone(todo) {
-        todo.done = !todo.done;
+        todo.completed = !todo.completed;
         todoService.updateTodo(todo, () => {
             // console.log('todo erledigt');
         });

@@ -22,7 +22,7 @@
 
 -   [x] Base CSS (Button, Todolist, Formfields)
 -   [x] Darkmode with custom properties
--   [x] fix bullet moving when adding done modifier
+-   [x] fix bullet moving when adding completed modifier
 
 ### JS
 

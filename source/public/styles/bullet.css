@@ -25,10 +25,10 @@
     border-color: var(--color-primary-surface);
 }
 
-.bullet--done {
+.bullet--completed {
     border-color: var(--color-primary-surface);
 }
 
-.bullet--done::after {
+.bullet--completed::after {
     opacity: 1;
 }

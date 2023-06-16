@@ -20,7 +20,7 @@ export class TodoService {
                     item.description,
                     item.duedate,
                     item.priority,
-                    item.done,
+                    item.completed,
                     item.createdate
                 )
         );
@@ -40,7 +40,7 @@ export class TodoService {
         callback(todo);
     }
 
-    async updateTodo({ id, title, description, duedate, priority, done }, callback) {
+    async updateTodo({ id, title, description, duedate, priority, completed }, callback) {
         const todo = this.getById(id);
 
         // console.log('updateTodo', todo);
@@ -49,8 +49,8 @@ export class TodoService {
         todo.description = description;
         todo.setDuedate(duedate);
         todo.setPriority(priority);
-        if (done) {
-            todo.done = done;
+        if (completed) {
+            todo.completed = completed;
         }
 
         this.sort();

@@ -55,7 +55,7 @@ export class TodoService {
 
         this.sort();
 
-        await httpService.ajax('PUT', `api/todos/${todo.id}`, todo);
+        await httpService.ajax('PATCH', `api/todos/${todo.id}`, todo);
         callback(todo);
     }
 

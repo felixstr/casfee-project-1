@@ -1,11 +1,32 @@
 # CAS FEE • Project 1 - Todo App
 
-## Todos
+A simple todo app using `express` and `nedb` in the backend and vanilla js in the frontend.
 
-### General
+## Install and run the project
 
--   [x] using "Vorlage V1.2"
--   [x] add create date
+Install the dependencies:
+
+```
+npm install
+```
+
+Start the app
+
+```
+npm start
+```
+
+## REST API
+
+| URL           | Method | Description   |
+| ------------- | ------ | ------------- |
+| api/todos     | GET    | get all todos |
+| api/todos     | POST   | add a todo    |
+| api/todos/:id | PUT    | update a todo |
+| api/todos/:id | DELETE | delete a todo |
+| api/todos/:id | GET    | get a todo    |
+
+## Worklog
 
 ### HTML
 

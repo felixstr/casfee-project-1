@@ -5,7 +5,7 @@ import { todosController } from '../controller/todos-controller.js';
 
 router.get('/todos', todosController.getTodos);
 router.post('/todos', todosController.addTodo);
-router.put('/todos/:id', todosController.updateTodo);
+router.patch('/todos/:id', todosController.updateTodo);
 router.delete('/todos/:id', todosController.deleteTodo);
 router.get('/todos/:id', todosController.getTodo);
 

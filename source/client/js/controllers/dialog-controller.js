@@ -44,8 +44,10 @@ export default class DialogController {
             this.duedateFieldElement.value = todo.duedate;
             this.priorityFieldElement.value = todo.priority;
             this.titleElement.innerText = 'Edit todo';
+            this.duedateFieldElement.removeAttribute('min');
         } else {
             this.titleElement.innerText = 'Add todo';
+            this.duedateFieldElement.setAttribute('min', new Date().toJSON().substring(0, 10));
         }
 
         this.duedateFieldElement.dispatchEvent(new Event('resetType'));

@@ -60,3 +60,4 @@ npm start
 -   [x] add REST backend with database
 -   [x] set createdate in the backend
 -   [x] change file structure: separate folders in `server` and `client`
+-   [x] set min value to duedate input field (only for todo add)

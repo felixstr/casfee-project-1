@@ -1,5 +1,5 @@
 import { settingsStorage } from '../services/settings-storage.js';
-class UiController {
+class ModeController {
     constructor() {
         this.initModeToggle();
     }
@@ -22,4 +22,4 @@ class UiController {
     }
 }
 
-new UiController();
+new ModeController();

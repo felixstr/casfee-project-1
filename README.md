@@ -32,7 +32,6 @@ npm start
 
 -   [x] Base HTML (Button, Todolist, Formfields)
 -   [x] Use `dialog` element to show the form
--   [ ] (optional) Using handlebars for the templates
 -   [x] use button or input element for bullet
 -   [x] use toggle for show/hide completed todos
 -   [x] add favicon

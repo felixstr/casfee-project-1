@@ -1,7 +1,7 @@
 import express from 'express';
 
 const router = express.Router();
-import { todosController } from '../controller/todos-controller.js';
+import { todosController } from '../controllers/todos-controller.js';
 
 router.get('/todos', todosController.getTodos);
 router.post('/todos', todosController.addTodo);

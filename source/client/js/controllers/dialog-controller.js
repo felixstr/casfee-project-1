@@ -144,7 +144,7 @@ export default class DialogController {
     }
 
     changeSpecialInputTypeWhileFocus() {
-        // to get the floating labels work with date and number fields, the type must be changed to text when not focused (date and number fields do not have a placolder, which is needed go get the floating label work with css)
+        // to get the floating labels work with date and number fields, the type must be changed to text when not focused (date and number fields do not have a placeholder, which is needed go get the floating label work with css)
         this.formElement
             .querySelectorAll('.textfield input[type=date], .textfield input[type=number]')
             .forEach((item) => {

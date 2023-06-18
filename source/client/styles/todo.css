@@ -1,3 +1,4 @@
+/* todo list item */
 .todo-item {
     display: flex;
     gap: 1rem;
@@ -27,7 +28,6 @@
 
 .todo-item__prio {
     color: var(--color-primary-surface);
-    font-weight: bold;
 }
 
 .todo-item__due-date {
@@ -66,6 +66,43 @@
     display: flex;
 }
 
+/* bullet */
+.bullet {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--color-on-surface-light);
+    border-radius: 50%;
+    width: 2rem;
+    aspect-ratio: 1;
+    transition: var(--transition-fast);
+    cursor: pointer;
+    background: none;
+}
+
+.bullet::after {
+    content: '';
+    width: calc(100% - 6px);
+    aspect-ratio: 1;
+    background: var(--color-primary-surface);
+    opacity: 0;
+    border-radius: 50%;
+}
+
+.bullet:hover {
+    transform: scale(1.02);
+    border-color: var(--color-primary-surface);
+}
+
+.bullet--completed {
+    border-color: var(--color-primary-surface);
+}
+
+.bullet--completed::after {
+    opacity: 1;
+}
+
+/* empty state */
 .todo-list__empty {
     background: var(--color-secondary-light);
     color: var(--color-on-secondary);

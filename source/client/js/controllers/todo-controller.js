@@ -42,13 +42,11 @@ class TodoController {
         this.dialogController.onSubmit = (data) => {
             if (data.id) {
                 todoService.updateTodo(data, () => {
-                    // console.log('todo updated and list updated', data);
                     this.renderTodoList();
                     this.dialogController.closeDialog();
                 });
             } else {
                 todoService.addTodo(data, () => {
-                    // console.log('todo added and list updated', data);
                     this.renderTodoList();
                     this.dialogController.closeDialog();
                 });
@@ -174,9 +172,7 @@ class TodoController {
 
     toggleDone(todo) {
         todo.completed = !todo.completed;
-        todoService.updateTodo(todo, () => {
-            // console.log('todo erledigt');
-        });
+        todoService.updateTodo(todo);
         this.renderTodoList();
     }
 

@@ -26,7 +26,6 @@ export class TodoService {
         );
 
         this.sort();
-        // console.log('loadData', this.todos);
     }
 
     async addTodo({ title, description, duedate, priority }, callback) {
@@ -37,13 +36,11 @@ export class TodoService {
         this.todos.push(todo);
         this.sort();
 
-        callback(todo);
+        callback && callback(todo);
     }
 
     async updateTodo({ id, title, description, duedate, priority, completed }, callback) {
         const todo = this.getById(id);
-
-        // console.log('updateTodo', todo);
 
         todo.title = title;
         todo.description = description;
@@ -56,7 +53,7 @@ export class TodoService {
         this.sort();
 
         await httpService.ajax('PATCH', `api/todos/${todo.id}`, todo);
-        callback(todo);
+        callback && callback(todo);
     }
 
     getById(id) {

@@ -6,7 +6,6 @@ class HttpService {
         });
 
         data = JSON.stringify(data);
-        // console.log('data', data);
 
         return fetch(url, {
             method: method,

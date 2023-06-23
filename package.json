@@ -12,7 +12,7 @@
         "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\""
     },
     "type": "module",
-    "author": "mgfeller",
+    "author": "felix stricker",
     "license": "ISC",
     "devDependencies": {
         "eslint": "^8.42.0",

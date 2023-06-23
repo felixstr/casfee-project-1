@@ -16,6 +16,10 @@ Start the app
 npm start
 ```
 
+### Demo data
+
+Use demo data to already have a pre-filled list: `source/server/data/todos-demo.db`
+
 ## REST API
 
 | URL           | Method | Description   |
@@ -37,6 +41,7 @@ npm start
 -   [x] add favicon
 -   [x] accessibility: keyboard navigation
 -   [x] add sort buttons
+-   [x] mobile optimisation
 
 ### CSS
 

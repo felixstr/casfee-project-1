@@ -53,8 +53,11 @@
     transition: var(--transition-fast);
 }
 
-.todo-item:has(:focus) .todo-item__action,
 .todo-item:hover .todo-item__action {
+    opacity: 1;
+}
+/* not yet working in firefox */
+.todo-item:has(:focus) .todo-item__action {
     opacity: 1;
 }
 

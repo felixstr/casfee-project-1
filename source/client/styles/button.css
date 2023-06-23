@@ -8,6 +8,7 @@
     cursor: pointer;
     transition: var(--transition-fast);
     min-width: 10rem;
+    font-weight: normal;
 }
 
 .button--primary {

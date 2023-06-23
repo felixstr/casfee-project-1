@@ -86,6 +86,15 @@ input::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
+.textfield > :first-child[type='date'] {
+    display: flex;
+    -webkit-min-logical-width: calc(100% - 16px);
+}
+.textfield > :first-child[type='date']::-webkit-date-and-time-value {
+    text-align: left;
+    padding-bottom: 6px;
+}
+
 /* remove focus outline */
 .textfield > *:focus {
     outline: none;
